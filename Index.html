@@ -9,20 +9,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#F6F2E9;
-    --bg-2:#EFE9DB;
-    --surface:#FFFFFF;
-    --surface-2:#FBF8F2;
-    --border:#E6DFD1;
-    --text:#241A12;
-    --text-2:#6B5A4D;
-    --muted:#9A8A7C;
-    --brand:#1E5631;
-    --brand-2:#2E7D4F;
-    --brand-soft:#E7F1EA;
-    --gold:#D99B26;
-    --terra:#C24D2C;
-    --ok:#2F855A;
+    --bg:#F6F2E9; --bg-2:#EFE9DB; --surface:#FFFFFF; --surface-2:#FBF8F2;
+    --border:#E6DFD1; --text:#241A12; --text-2:#6B5A4D; --muted:#9A8A7C;
+    --brand:#1E5631; --brand-2:#2E7D4F; --brand-soft:#E7F1EA;
+    --gold:#D99B26; --terra:#C24D2C; --ok:#2F855A;
     --shadow-sm:0 1px 2px rgba(36,26,18,.06),0 6px 18px -8px rgba(36,26,18,.18);
     --shadow-lg:0 24px 60px -24px rgba(36,26,18,.45);
     --r-sm:10px; --r-md:16px; --r-lg:22px;
@@ -89,8 +79,6 @@
   .btn-danger:hover:not(:disabled){filter:brightness(.93)}
   .btn-outline{background:var(--surface);border-color:var(--border);color:var(--text)}
   .btn-outline:hover:not(:disabled){background:var(--surface-2)}
-  .btn-ghost{background:transparent;color:var(--text-2)}
-  .btn-ghost:hover:not(:disabled){background:var(--surface-2);color:var(--text)}
   .btn-sm{padding:7px 12px;font-size:12.5px;border-radius:9px}
   .btn.block{width:100%}
   .icon-btn{
@@ -120,6 +108,7 @@
     width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--r-sm);
     font-family:var(--font);font-size:14px;background:var(--surface);color:var(--text);
     transition:border-color .15s,box-shadow .15s;
+    resize:vertical;
   }
   .input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 16%,transparent)}
   .hint{font-size:11.5px;color:var(--muted);margin-top:5px;display:block;line-height:1.45}
@@ -214,7 +203,7 @@
   .user-card-row.clickable{cursor:pointer}
   .user-card-row.clickable:hover{background:var(--surface-2);border-color:color-mix(in srgb,var(--brand) 30%,var(--border))}
   .pill{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:999px;text-transform:uppercase;
-        letter-spacing:.03em}
+        letter-spacing:.03em;display:inline-block}
   .pill-admin{background:#FEF3C7;color:#92400E}
   .pill-danger{background:#FEE2E2;color:#991B1B}
   .pill-ok{background:#DCFCE7;color:#166534}
@@ -231,6 +220,38 @@
   .hidden{display:none !important}
   .search-row{display:flex;gap:8px;margin-bottom:16px}
   .search-row .input{flex:1}
+
+  /* ---------- feed-specific ---------- */
+  .feed-wrap{max-width:680px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:16px}
+  .composer-card{padding:16px}
+  .composer-text{min-height:80px}
+  .feed-list{display:flex;flex-direction:column;gap:12px}
+  .post-card{
+    background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);
+    padding:16px;box-shadow:var(--shadow-sm);
+  }
+  .post-head{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+  .post-author{min-width:0;flex:1}
+  .post-author-name{font-weight:800;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .post-meta{font-size:11.5px;color:var(--text-2);margin-top:1px}
+  .post-content{font-size:14.5px;line-height:1.6;white-space:pre-wrap;word-wrap:break-word;
+                color:var(--text)}
+  .post-img{
+    display:block;max-width:100%;max-height:480px;border-radius:12px;
+    margin-top:10px;cursor:zoom-in;box-shadow:var(--shadow-sm);
+  }
+  .post-foot{margin-top:10px;display:flex;justify-content:flex-end;gap:6px}
+  .post-delete{
+    background:transparent;border:1px solid var(--border);color:var(--text-2);
+    border-radius:9px;padding:5px 10px;font-family:var(--font);font-size:11.5px;font-weight:800;
+    cursor:pointer;transition:all .15s;
+  }
+  .post-delete:hover{background:#FEE2E2;border-color:#FCA5A5;color:#991B1B}
+  .composer-preview-img{
+    max-width:100%;max-height:240px;border-radius:12px;display:block;margin-top:10px;
+  }
+
+  /* ---------- modal / toast / lightbox ---------- */
   .modal-backdrop{position:fixed;inset:0;background:rgba(20,14,9,.55);backdrop-filter:blur(4px);
                   z-index:120;display:grid;place-items:center;padding:18px;animation:fade .16s ease}
   @keyframes fade{from{opacity:0}to{opacity:1}}
@@ -255,6 +276,7 @@
   .spinner{width:34px;height:34px;border-radius:50%;border:3px solid var(--border);
            border-top-color:var(--brand);animation:spin .8s linear infinite;margin:0 auto 12px}
   @keyframes spin{to{transform:rotate(360deg)}}
+
   @media (max-width:820px){
     .topbar{padding:10px 14px}
     .brand-sub{display:none}
@@ -383,6 +405,9 @@
       📥 <span data-i18n="navInbox">Inbox</span>
       <span class="badge hidden" id="inboxBadge">0</span>
     </button>
+    <button type="button" class="nav-item" id="navFeed" onclick="switchSection('feed')">
+      📰 <span data-i18n="navFeed">Feed</span>
+    </button>
     <button type="button" class="nav-item" id="navDiscover" onclick="switchSection('discover')">
       ✨ <span data-i18n="navDiscover">Discover</span>
     </button>
@@ -465,6 +490,61 @@
           </button>
         </div>
         <div class="panel-body" id="inboxMessagesList"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="secFeed" class="hidden">
+    <div class="feed-wrap">
+      <div class="card composer-card">
+        <form onsubmit="handleCreatePost(event)">
+          <div style="display:flex;gap:12px;align-items:flex-start">
+            <div id="feedComposerAvatar"></div>
+            <div style="flex:1;min-width:0">
+              <textarea class="input composer-text" id="feedText" maxlength="2000"
+                        data-i18n-placeholder="postPlaceholder"
+                        placeholder="What's on your mind?"></textarea>
+
+              <div id="feedImagePreviewWrap" class="hidden" style="margin-top:10px">
+                <img id="feedImagePreview" class="composer-preview-img" alt="" />
+                <button type="button" class="btn btn-outline btn-sm" style="margin-top:8px"
+                        onclick="removeFeedImage()">
+                  <span data-i18n="removePhoto">Remove</span>
+                </button>
+              </div>
+
+              <div class="row-between" style="margin-top:12px">
+                <div style="display:flex;gap:8px">
+                  <input type="file" id="feedImageInput" class="hidden"
+                         accept="image/png,image/jpeg,image/webp"
+                         onchange="handleFeedImageChange(event)" />
+                  <button type="button" class="btn btn-outline btn-sm"
+                          onclick="document.getElementById('feedImageInput').click()">
+                    📷 <span data-i18n="addPhotoBtn">Add Photo</span>
+                  </button>
+                </div>
+                <button type="submit" class="btn btn-primary" id="btnPostSubmit">
+                  <span data-i18n="postBtn">Post</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title" data-i18n="feedTitle">Community Feed</div>
+            <div class="panel-sub" data-i18n="feedSub">Posts from everyone in Beg Tera</div>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" onclick="loadFeed(true)">
+            <span data-i18n="refreshBtn">Refresh</span>
+          </button>
+        </div>
+        <div class="panel-body" style="padding:16px">
+          <div id="feedList" class="feed-list"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -590,6 +670,8 @@
         <div class="stat-lbl" data-i18n="statTotalMessages">Messages</div></div>
       <div class="stat-card"><div class="stat-val" id="statTotalFriendships">0</div>
         <div class="stat-lbl" data-i18n="statTotalFriendships">Friendships</div></div>
+      <div class="stat-card"><div class="stat-val" id="statTotalPosts">0</div>
+        <div class="stat-lbl" data-i18n="statTotalPosts">Posts</div></div>
     </div>
 
     <div class="panel">
@@ -663,8 +745,6 @@
 /* =========================================================================
    API_CONFIG — URL of your deployed Apps Script Web App.
    Only needed when hosting this file OUTSIDE Apps Script (e.g. GitHub Pages).
-   Leave as-is when using Apps Script HTML hosting.
-   Format: https://script.google.com/macros/s/XXXXX/exec
    ========================================================================= */
 const API_URL = 'https://script.google.com/macros/s/AKfycbzJ9tlTpiUt_vpUAFr9eqJVYGp8V1S8YH1SMJg4QroGCbor59bY0v-Y_UyWrlYu5hOeVg/exec';
 
@@ -694,6 +774,7 @@ const I18N = {
     forgotPassword: 'Forgot password?',
     navChats: 'Chats',
     navInbox: 'Inbox',
+    navFeed: 'Feed',
     navDiscover: 'Discover',
     navFriends: 'Friends',
     navProfile: 'My Profile',
@@ -715,6 +796,17 @@ const I18N = {
     inboxEmptyRequests: 'No pending friend requests.',
     inboxEmptyMessages: 'No new messages yet.',
     inboxUnreadSuffix: 'unread',
+    feedTitle: 'Community Feed',
+    feedSub: 'Posts from everyone in Beg Tera',
+    feedEmpty: 'No posts yet. Be the first to share something!',
+    postPlaceholder: 'What\'s on your mind?',
+    postBtn: 'Post',
+    postingBtn: 'Posting...',
+    addPhotoBtn: 'Add Photo',
+    deletePost: 'Delete',
+    confirmDeletePost: 'Delete this post permanently?',
+    msgPostCreated: 'Posted!',
+    msgPostDeleted: 'Post deleted.',
     discoverTitle: 'People you may know',
     discoverSub: 'Suggested friends based on your connections',
     discoverEmpty: 'No suggestions right now — try searching for a name above.',
@@ -751,6 +843,7 @@ const I18N = {
     statSuspendedUsers: 'Suspended',
     statTotalMessages: 'Messages',
     statTotalFriendships: 'Friendships',
+    statTotalPosts: 'Posts',
     adminUsersTitle: 'User Management',
     roleAdmin: 'Admin',
     roleUser: 'Member',
@@ -800,6 +893,8 @@ const I18N = {
     NOT_FRIENDS: 'You can only exchange messages with accepted friends.',
     IMAGE_TOO_LARGE: 'The selected image exceeds the allowed size.',
     INVALID_IMAGE_TYPE: 'Unsupported image format.',
+    EMPTY_POST: 'Your post needs some text or a photo.',
+    POST_TOO_LONG: 'Posts are limited to 2000 characters.',
     NO_EMAIL: 'No email address on file for this account. Please contact an administrator.',
     INVALID_RESET_CODE: 'That reset code is invalid.',
     RESET_EXPIRED: 'This code has expired. Please request a new one.',
@@ -830,6 +925,7 @@ const I18N = {
     forgotPassword: 'የይለፍ ቃል ረሱ?',
     navChats: 'ውይይቶች',
     navInbox: 'መልዕክት ሳጥን',
+    navFeed: 'ፊድ',
     navDiscover: 'አግኝ',
     navFriends: 'ጓደኞች',
     navProfile: 'የእኔ መገለጫ',
@@ -851,6 +947,17 @@ const I18N = {
     inboxEmptyRequests: 'በመጠባበቅ ላይ ያለ ጥያቄ የለም።',
     inboxEmptyMessages: 'እስካሁን አዲስ መልእክት የለም።',
     inboxUnreadSuffix: 'ያልተነበቡ',
+    feedTitle: 'የማህበረሰብ ፊድ',
+    feedSub: 'በበግ ተራ ካሉ ሁሉም የተለጠፉ ልጥፎች',
+    feedEmpty: 'እስካሁን ልጥፍ የለም። የመጀመሪያው ይሁኑ!',
+    postPlaceholder: 'ምን እያሰቡ ነው?',
+    postBtn: 'ለጥፍ',
+    postingBtn: 'በመለጠፍ ላይ...',
+    addPhotoBtn: 'ፎቶ ጨምር',
+    deletePost: 'ሰርዝ',
+    confirmDeletePost: 'ይህን ልጥፍ ለዘላለም መሰረዝ ይፈልጋሉ?',
+    msgPostCreated: 'ተለጥፏል!',
+    msgPostDeleted: 'ልጥፉ ተሰርዟል።',
     discoverTitle: 'ልታወቁዋቸው የሚችሉ ሰዎች',
     discoverSub: 'በግንኙነቶችዎ ላይ የተመሠረቱ የጓደኝነት ጥቆማዎች',
     discoverEmpty: 'አሁን ምንም ጥቆማ የለም — ከላይ በስም ይፈልጉ።',
@@ -887,6 +994,7 @@ const I18N = {
     statSuspendedUsers: 'የታገዱ',
     statTotalMessages: 'መልእክቶች',
     statTotalFriendships: 'ጓደኝነቶች',
+    statTotalPosts: 'ልጥፎች',
     adminUsersTitle: 'የተጠቃሚዎች አስተዳደር',
     roleAdmin: 'አስተዳዳሪ',
     roleUser: 'አባል',
@@ -936,6 +1044,8 @@ const I18N = {
     NOT_FRIENDS: 'መልእክት መላላክ የሚችሉት ከጓደኞችዎ ጋር ብቻ ነው።',
     IMAGE_TOO_LARGE: 'የተመረጠው ፎቶ መጠን ከተፈቀደው በላይ ነው።',
     INVALID_IMAGE_TYPE: 'የማይደገፍ የምስል አይነት ነው።',
+    EMPTY_POST: 'ልጥፍዎ ጽሑፍ ወይም ፎቶ ሊኖረው ይገባል።',
+    POST_TOO_LONG: 'ልጥፎች ከ2000 ፊደላት መብለጥ የለባቸውም።',
     NO_EMAIL: 'በዚህ መለያ ላይ ኢሜይል አልተመዘገበም። እባክዎ አስተዳዳሪን ያግኙ።',
     INVALID_RESET_CODE: 'የኮዱ ስህተት ነው።',
     RESET_EXPIRED: 'ኮዱ ጊዜው አልፏል። እባክዎ አዲስ ኮድ ይጠይቁ።',
@@ -964,6 +1074,8 @@ const state = {
   incomingRequests: [],
   outgoingRequests: [],
   inboxData: { recentMessages: [] },
+  feed: [],
+  feedImageBase64: '',
   selectedFriend: null,
   messages: [],
   discover: [],
@@ -1000,6 +1112,7 @@ function setLanguage(lang) {
     renderMessages();
     renderRequestsAndFriends();
     renderInbox();
+    renderFeed();
     renderDiscover();
     if (state.activeSection === 'admin' && state.user.role === 'admin') loadAdminPanel();
   }
@@ -1017,12 +1130,11 @@ function toggleTheme() {
 }
 
 /* =========================================================================
-   4. RPC — dual mode (Apps Script HTML host OR external host like GitHub Pages)
+   4. RPC — dual mode (Apps Script host OR external host like GitHub Pages)
    ========================================================================= */
 function callServer(fnName) {
   const args = Array.prototype.slice.call(arguments, 1);
 
-  // Mode 1: served by Apps Script (google.script.run available)
   if (typeof google !== 'undefined' && google.script && google.script.run) {
     return new Promise(function(resolve, reject) {
       google.script.run
@@ -1031,7 +1143,6 @@ function callServer(fnName) {
     });
   }
 
-  // Mode 2: external host (e.g. GitHub Pages) — POST JSON to the web app
   if (!API_URL || API_URL.indexOf('PASTE_YOUR_APPS_SCRIPT') === 0) {
     return Promise.reject(new Error(
       'API_URL is not configured. Set it to your deployed Apps Script Web App /exec URL ' +
@@ -1173,6 +1284,8 @@ function clearSession() {
   state.selectedFriend = null;
   state.messages = [];
   state.inboxData = { recentMessages: [] };
+  state.feed = [];
+  state.feedImageBase64 = '';
   localStorage.removeItem(LS_TOKEN);
   showAuthView();
 }
@@ -1272,7 +1385,6 @@ async function handleLogout() {
 function enterAuthenticatedState(user) {
   state.user = user;
 
-  // Initialize per-user inbox seen-timestamp so the badge starts clean
   const seenKey = LS_INBOX_SEEN_PREFIX + user.userId;
   if (!localStorage.getItem(seenKey)) {
     localStorage.setItem(seenKey, new Date().toISOString());
@@ -1283,9 +1395,12 @@ function enterAuthenticatedState(user) {
   document.getElementById('btnLogout').classList.remove('hidden');
   document.getElementById('navAdmin').classList.toggle('hidden', user.role !== 'admin');
 
+  document.getElementById('feedComposerAvatar').innerHTML = renderAvatarHtml(user);
+
   populateProfileForm();
   switchSection('chats');
   refreshFriendsAndChat(true);
+  loadFeed(false);
   startPolling();
 }
 
@@ -1294,7 +1409,7 @@ function enterAuthenticatedState(user) {
    ========================================================================= */
 function switchSection(section) {
   state.activeSection = section;
-  ['chats', 'inbox', 'discover', 'friends', 'profile', 'admin'].forEach(function(sec) {
+  ['chats', 'inbox', 'feed', 'discover', 'friends', 'profile', 'admin'].forEach(function(sec) {
     const cap = sec.charAt(0).toUpperCase() + sec.slice(1);
     const secEl = document.getElementById('sec' + cap);
     const navEl = document.getElementById('nav' + cap);
@@ -1307,6 +1422,8 @@ function switchSection(section) {
     markInboxSeen();
     updateInboxBadge();
     refreshFriendsAndChat(false);
+  } else if (section === 'feed') {
+    loadFeed(false);
   } else if (section === 'friends') {
     refreshFriendsAndChat(false);
   } else if (section === 'discover') {
@@ -1323,6 +1440,7 @@ function startPolling() {
   state.pollTimer = setInterval(function() {
     if (!state.token || !state.user) return;
     refreshFriendsAndChat(false);
+    if (state.activeSection === 'feed') loadFeed(false);
   }, 5000);
 }
 
@@ -1414,7 +1532,6 @@ function updateInboxBadge() {
 }
 
 function renderInbox() {
-  // -- Requests --
   const reqEl = document.getElementById('inboxRequestsList');
   const reqs = state.incomingRequests || [];
   if (reqs.length === 0) {
@@ -1442,7 +1559,6 @@ function renderInbox() {
     }).join('');
   }
 
-  // -- Recent messages --
   const msgEl = document.getElementById('inboxMessagesList');
   const msgs = (state.inboxData && state.inboxData.recentMessages) || [];
   if (msgs.length === 0) {
@@ -1484,7 +1600,152 @@ function renderInbox() {
 }
 
 /* =========================================================================
-   9. CHAT
+   9. FEED (POSTS)
+   ========================================================================= */
+async function loadFeed(showFeedback) {
+  if (!state.token) return;
+  try {
+    const res = await callServer('getFeed', state.token);
+    if (res && res.ok) {
+      state.feed = res.posts || [];
+      renderFeed();
+    } else if (res && res.errorCode === 'UNAUTHORIZED') {
+      clearSession();
+    } else if (showFeedback) {
+      handleServerError(res);
+    }
+  } catch (e) {
+    if (showFeedback) showToast((e && e.message) || t('errGeneric'), 'error');
+  }
+}
+
+function renderFeed() {
+  const list = document.getElementById('feedList');
+  if (!list) return;
+
+  if (!state.feed || state.feed.length === 0) {
+    list.innerHTML = '<div class="empty-state">' + escapeHtml(t('feedEmpty')) + '</div>';
+    return;
+  }
+
+  list.innerHTML = state.feed.map(function(p) {
+    const author = p.author || {};
+    const delBtn = p.canDelete
+      ? '<button type="button" class="post-delete" onclick="handleDeletePost(\'' +
+          p.postId + '\')">🗑️ ' + escapeHtml(t('deletePost')) + '</button>'
+      : '';
+
+    const contentHtml = p.content
+      ? '<div class="post-content">' + escapeHtml(p.content) + '</div>'
+      : '';
+
+    const imageHtml = p.imageData
+      ? '<img src="' + p.imageData + '" class="post-img" alt="post" onclick="openLightbox(this.src)" />'
+      : '';
+
+    return '' +
+      '<div class="post-card">' +
+        '<div class="post-head">' +
+          renderAvatarHtml(author) +
+          '<div class="post-author">' +
+            '<div class="post-author-name">' + escapeHtml(author.displayName || 'Unknown') + '</div>' +
+            '<div class="post-meta">@' + escapeHtml(author.username || '') +
+              ' · ' + escapeHtml(formatTime(p.createdAt)) + '</div>' +
+          '</div>' +
+        '</div>' +
+        contentHtml +
+        imageHtml +
+        (delBtn ? '<div class="post-foot">' + delBtn + '</div>' : '') +
+      '</div>';
+  }).join('');
+}
+
+async function handleCreatePost(event) {
+  event.preventDefault();
+  if (!state.user) return;
+
+  const textEl = document.getElementById('feedText');
+  const btn = document.getElementById('btnPostSubmit');
+  const content = textEl.value.trim();
+  const imageData = state.feedImageBase64;
+
+  if (!content && !imageData) {
+    showToast(t('EMPTY_POST'), 'error');
+    return;
+  }
+
+  btn.disabled = true;
+  const label = btn.querySelector('span');
+  const oldLabel = label ? label.textContent : '';
+  if (label) label.textContent = t('postingBtn');
+
+  try {
+    const res = await callServer('createPost', state.token, {
+      content: content,
+      imageData: imageData
+    });
+    if (res && res.ok && res.post) {
+      state.feed.unshift(res.post);
+      renderFeed();
+      textEl.value = '';
+      state.feedImageBase64 = '';
+      document.getElementById('feedImageInput').value = '';
+      document.getElementById('feedImagePreviewWrap').classList.add('hidden');
+      document.getElementById('feedImagePreview').src = '';
+      showToast(t('msgPostCreated'), 'success');
+    } else {
+      handleServerError(res);
+    }
+  } catch (e) {
+    showToast((e && e.message) || t('errGeneric'), 'error');
+  } finally {
+    btn.disabled = false;
+    if (label) label.textContent = oldLabel || t('postBtn');
+  }
+}
+
+async function handleFeedImageChange(event) {
+  const file = event.target.files[0];
+  event.target.value = '';
+  if (!file) return;
+  try {
+    const compressed = await processImageFile(file, 900, 46000);
+    state.feedImageBase64 = compressed;
+    document.getElementById('feedImagePreview').src = compressed;
+    document.getElementById('feedImagePreviewWrap').classList.remove('hidden');
+  } catch (err) {
+    showToast(err.message === 'TOO_LARGE' ? t('errImageTooLarge') : t('errInvalidImageType'), 'error');
+  }
+}
+
+function removeFeedImage() {
+  state.feedImageBase64 = '';
+  document.getElementById('feedImageInput').value = '';
+  document.getElementById('feedImagePreview').src = '';
+  document.getElementById('feedImagePreviewWrap').classList.add('hidden');
+}
+
+async function handleDeletePost(postId) {
+  if (!confirm(t('confirmDeletePost'))) return;
+  try {
+    const res = await callServer('deletePost', state.token, postId);
+    if (res && res.ok) {
+      state.feed = state.feed.filter(function(p) { return p.postId !== postId; });
+      renderFeed();
+      showToast(t('msgPostDeleted'), 'success');
+      if (state.activeSection === 'admin' && state.user && state.user.role === 'admin') {
+        loadAdminPanel();
+      }
+    } else {
+      handleServerError(res);
+    }
+  } catch (e) {
+    showToast((e && e.message) || t('errGeneric'), 'error');
+  }
+}
+
+/* =========================================================================
+   10. CHAT
    ========================================================================= */
 function renderFriendsSidebar() {
   const container = document.getElementById('chatFriendsList');
@@ -1637,7 +1898,7 @@ async function handleSendImageMessage(event) {
 }
 
 /* =========================================================================
-   10. DISCOVER / SEARCH
+   11. DISCOVER / SEARCH
    ========================================================================= */
 async function loadDiscover(showFeedback) {
   if (!state.token) return;
@@ -1781,7 +2042,7 @@ async function handleRemoveFriend(friendUserId) {
 }
 
 /* =========================================================================
-   11. REQUESTS & FRIENDS LISTS
+   12. REQUESTS & FRIENDS LISTS
    ========================================================================= */
 function renderRequestsAndFriends() {
   const incEl = document.getElementById('incomingRequestsList');
@@ -1855,7 +2116,7 @@ function renderRequestsAndFriends() {
 }
 
 /* =========================================================================
-   12. PROFILE
+   13. PROFILE
    ========================================================================= */
 function populateProfileForm() {
   if (!state.user) return;
@@ -1909,8 +2170,10 @@ async function handleUpdateProfile(event) {
     if (res && res.ok && res.user) {
       state.user = res.user;
       populateProfileForm();
+      document.getElementById('feedComposerAvatar').innerHTML = renderAvatarHtml(res.user);
       showToast(t('msgProfileSaved'), 'success');
       renderFriendsSidebar();
+      renderFeed();
     } else {
       handleServerError(res);
     }
@@ -1922,7 +2185,7 @@ async function handleUpdateProfile(event) {
 }
 
 /* =========================================================================
-   13. ADMIN
+   14. ADMIN
    ========================================================================= */
 async function loadAdminPanel() {
   if (!state.user || state.user.role !== 'admin') return;
@@ -1938,6 +2201,7 @@ async function loadAdminPanel() {
     document.getElementById('statSuspendedUsers').textContent = res.stats.suspendedUsers;
     document.getElementById('statTotalMessages').textContent = res.stats.totalMessages;
     document.getElementById('statTotalFriendships').textContent = res.stats.totalFriendships;
+    document.getElementById('statTotalPosts').textContent = res.stats.totalPosts;
 
     document.getElementById('adminUsersList').innerHTML = (res.users || []).map(function(u) {
       const isSelf = u.userId === state.user.userId;
@@ -1987,6 +2251,7 @@ async function adminAction(targetUserId, action) {
     if (res && res.ok) {
       showToast(action === 'delete' ? t('msgUserDeleted') : t('msgAdminUpdated'), 'success');
       loadAdminPanel();
+      if (action === 'delete') loadFeed(false);
     } else {
       handleServerError(res);
     }
@@ -1996,7 +2261,7 @@ async function adminAction(targetUserId, action) {
 }
 
 /* =========================================================================
-   14. PASSWORD RESET MODAL
+   15. PASSWORD RESET MODAL
    ========================================================================= */
 function openResetModal() {
   document.getElementById('resetModal').classList.remove('hidden');
