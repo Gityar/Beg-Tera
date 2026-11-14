@@ -1,0 +1,2070 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Beg Tera | በግ ተራ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Ethiopic:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F6F2E9;
+    --bg-2:#EFE9DB;
+    --surface:#FFFFFF;
+    --surface-2:#FBF8F2;
+    --border:#E6DFD1;
+    --text:#241A12;
+    --text-2:#6B5A4D;
+    --muted:#9A8A7C;
+    --brand:#1E5631;
+    --brand-2:#2E7D4F;
+    --brand-soft:#E7F1EA;
+    --gold:#D99B26;
+    --terra:#C24D2C;
+    --ok:#2F855A;
+    --shadow-sm:0 1px 2px rgba(36,26,18,.06),0 6px 18px -8px rgba(36,26,18,.18);
+    --shadow-lg:0 24px 60px -24px rgba(36,26,18,.45);
+    --r-sm:10px; --r-md:16px; --r-lg:22px;
+    --font:'Plus Jakarta Sans','Noto Sans Ethiopic',system-ui,sans-serif;
+  }
+  [data-theme="dark"]{
+    --bg:#11100D; --bg-2:#161411; --surface:#1B1815; --surface-2:#221E1A;
+    --border:#322B24; --text:#F4EFE6; --text-2:#BCAD9E; --muted:#8C7E71;
+    --brand:#3E9B63; --brand-2:#2E7D4F; --brand-soft:#1C2A21;
+    --shadow-sm:0 1px 2px rgba(0,0,0,.5),0 6px 20px -8px rgba(0,0,0,.6);
+    --shadow-lg:0 24px 60px -24px rgba(0,0,0,.85);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:var(--font);color:var(--text);
+    background:
+      radial-gradient(900px 500px at 110% -10%, rgba(217,155,38,.14), transparent 60%),
+      radial-gradient(800px 480px at -10% 0%, rgba(30,86,49,.12), transparent 60%),
+      var(--bg);
+    min-height:100vh;display:flex;flex-direction:column;
+    transition:background .3s ease,color .3s ease;
+  }
+  .tibeb{
+    height:6px;width:100%;flex:none;
+    background:repeating-linear-gradient(90deg,
+      #1E5631 0 26px,#D99B26 26px 52px,#C24D2C 52px 78px,#241A12 78px 86px);
+  }
+  .topbar{
+    position:sticky;top:0;z-index:40;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+    padding:12px 20px;
+    background:color-mix(in srgb,var(--surface) 88%,transparent);
+    backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--border);
+  }
+  .brand{display:flex;align-items:center;gap:11px;min-width:0}
+  .logo{
+    width:40px;height:40px;border-radius:13px;flex:none;
+    background:linear-gradient(140deg,var(--brand),#37a06a);
+    color:#fff;display:grid;place-items:center;
+    font-weight:800;font-size:17px;letter-spacing:-.5px;
+    box-shadow:0 8px 20px -8px rgba(30,86,49,.8);
+  }
+  .brand-title{font-size:16px;font-weight:800;letter-spacing:-.02em;display:block;line-height:1.15}
+  .brand-alt{font-weight:600;color:var(--brand);font-size:13px}
+  .brand-sub{font-size:11px;color:var(--text-2);display:block}
+  .top-actions{display:flex;align-items:center;gap:8px}
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:7px;
+    padding:10px 16px;border-radius:var(--r-sm);border:1px solid transparent;
+    font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;
+    transition:transform .12s ease,filter .15s ease,background .15s ease,border-color .15s;
+    white-space:nowrap;text-decoration:none;color:var(--text);
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn:disabled{opacity:.55;cursor:not-allowed;transform:none}
+  .btn-primary{background:linear-gradient(140deg,var(--brand),var(--brand-2));color:#fff;
+               box-shadow:0 10px 24px -12px rgba(30,86,49,.9)}
+  .btn-primary:hover:not(:disabled){filter:brightness(1.07)}
+  .btn-gold{background:linear-gradient(140deg,#E8AE3C,var(--gold));color:#241A12;
+            box-shadow:0 10px 24px -14px rgba(217,155,38,.95)}
+  .btn-danger{background:var(--terra);color:#fff}
+  .btn-danger:hover:not(:disabled){filter:brightness(.93)}
+  .btn-outline{background:var(--surface);border-color:var(--border);color:var(--text)}
+  .btn-outline:hover:not(:disabled){background:var(--surface-2)}
+  .btn-ghost{background:transparent;color:var(--text-2)}
+  .btn-ghost:hover:not(:disabled){background:var(--surface-2);color:var(--text)}
+  .btn-sm{padding:7px 12px;font-size:12.5px;border-radius:9px}
+  .btn.block{width:100%}
+  .icon-btn{
+    width:38px;height:38px;border-radius:11px;border:1px solid var(--border);
+    background:var(--surface);cursor:pointer;font-size:16px;display:grid;place-items:center;
+    transition:background .15s,transform .12s;
+  }
+  .icon-btn:hover{background:var(--surface-2)}
+  .icon-btn:active{transform:scale(.96)}
+  .link{
+    background:none;border:none;color:var(--brand);font-family:var(--font);
+    font-size:13px;font-weight:700;cursor:pointer;padding:0;
+  }
+  .link:hover{text-decoration:underline}
+  .lang-toggle{display:inline-flex;background:var(--surface-2);border:1px solid var(--border);
+               border-radius:999px;padding:3px}
+  .lang-toggle button{
+    border:none;background:transparent;padding:6px 12px;border-radius:999px;
+    font-family:var(--font);font-size:12px;font-weight:800;color:var(--text-2);cursor:pointer;
+    transition:all .15s;
+  }
+  .lang-toggle button.active{background:var(--brand);color:#fff;box-shadow:var(--shadow-sm)}
+  .field{margin-bottom:14px}
+  .label{display:block;font-size:12.5px;font-weight:800;margin-bottom:6px;color:var(--text-2);
+         letter-spacing:.02em;text-transform:uppercase}
+  .input,textarea.input{
+    width:100%;padding:12px 14px;border:1.5px solid var(--border);border-radius:var(--r-sm);
+    font-family:var(--font);font-size:14px;background:var(--surface);color:var(--text);
+    transition:border-color .15s,box-shadow .15s;
+  }
+  .input:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px color-mix(in srgb,var(--brand) 16%,transparent)}
+  .hint{font-size:11.5px;color:var(--muted);margin-top:5px;display:block;line-height:1.45}
+  .row-between{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+        box-shadow:var(--shadow-sm)}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);
+         box-shadow:var(--shadow-sm);display:flex;flex-direction:column;overflow:hidden}
+  .panel-header{padding:15px 18px;border-bottom:1px solid var(--border);background:var(--surface-2);
+                display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .panel-title{font-size:15px;font-weight:800;letter-spacing:-.01em}
+  .panel-sub{font-size:12px;color:var(--text-2);margin-top:2px}
+  .panel-body{padding:16px;overflow-y:auto;flex:1}
+  .avatar{
+    width:42px;height:42px;border-radius:50%;flex:none;overflow:hidden;
+    display:grid;place-items:center;font-weight:800;font-size:16px;color:#fff;
+    background:linear-gradient(140deg,#E8AE3C,#C24D2C);
+    box-shadow:0 0 0 2px var(--surface),0 2px 8px rgba(0,0,0,.15);
+  }
+  .avatar img{width:100%;height:100%;object-fit:cover;display:block}
+  .avatar-lg{width:76px;height:76px;font-size:27px;box-shadow:0 0 0 3px var(--surface),0 8px 22px rgba(0,0,0,.18)}
+  .auth-wrap{flex:1;display:grid;place-items:center;padding:28px 16px 48px}
+  .auth-card{width:100%;max-width:440px;padding:30px}
+  .auth-head{text-align:center;margin-bottom:20px}
+  .auth-head h2{font-size:23px;font-weight:800;letter-spacing:-.02em}
+  .auth-head p{font-size:13px;color:var(--text-2);margin-top:5px}
+  .tabs{display:grid;grid-template-columns:1fr 1fr;background:var(--surface-2);
+        border:1px solid var(--border);border-radius:12px;padding:4px;margin-bottom:20px}
+  .tab{border:none;background:transparent;padding:10px;border-radius:9px;font-family:var(--font);
+       font-size:13.5px;font-weight:800;color:var(--text-2);cursor:pointer;transition:all .18s}
+  .tab.active{background:var(--surface);color:var(--brand);box-shadow:var(--shadow-sm)}
+  .workspace{flex:1;width:100%;max-width:1180px;margin:0 auto;padding:16px;display:flex;
+             flex-direction:column;gap:16px}
+  .nav-bar{display:flex;gap:6px;background:var(--surface);border:1px solid var(--border);
+           border-radius:var(--r-md);padding:7px;overflow-x:auto;box-shadow:var(--shadow-sm);
+           scrollbar-width:none}
+  .nav-bar::-webkit-scrollbar{display:none}
+  .nav-item{
+    display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:11px;
+    border:none;background:transparent;font-family:var(--font);font-size:13.5px;font-weight:800;
+    color:var(--text-2);cursor:pointer;white-space:nowrap;transition:all .18s;
+  }
+  .nav-item:hover{background:var(--surface-2);color:var(--text)}
+  .nav-item.active{background:linear-gradient(140deg,var(--brand),var(--brand-2));color:#fff;
+                   box-shadow:0 10px 22px -14px rgba(30,86,49,.95)}
+  .badge{background:var(--terra);color:#fff;font-size:10.5px;font-weight:800;
+         padding:2px 7px;border-radius:999px;line-height:1.5}
+  .chat-layout{display:grid;grid-template-columns:322px 1fr;gap:16px;
+               height:calc(100dvh - 214px);min-height:470px}
+  .friends-sidebar{overflow:hidden}
+  #chatFriendsList{overflow-y:auto;flex:1}
+  .friend-row{display:flex;align-items:center;gap:12px;padding:12px 16px;cursor:pointer;
+              border-bottom:1px solid var(--border);transition:background .14s;border-left:3px solid transparent}
+  .friend-row:hover{background:var(--surface-2)}
+  .friend-row.active{background:var(--brand-soft);border-left-color:var(--brand)}
+  .friend-info{flex:1;min-width:0}
+  .friend-name{font-weight:800;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .friend-sub{font-size:12px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .messages-feed{
+    flex:1;padding:18px;overflow-y:auto;display:flex;flex-direction:column;gap:10px;
+    background:
+      radial-gradient(600px 300px at 100% 0%, color-mix(in srgb,var(--gold) 8%,transparent), transparent 70%),
+      var(--bg-2);
+  }
+  .msg-bubble{max-width:min(75%,520px);padding:10px 14px;border-radius:16px;font-size:14px;
+              line-height:1.45;word-wrap:break-word;box-shadow:0 1px 3px rgba(0,0,0,.08);
+              animation:pop .16s ease}
+  @keyframes pop{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .msg-in{align-self:flex-start;background:var(--surface);color:var(--text);border-bottom-left-radius:5px}
+  .msg-out{align-self:flex-end;background:linear-gradient(140deg,var(--brand),var(--brand-2));
+           color:#fff;border-bottom-right-radius:5px}
+  .msg-img{max-width:250px;max-height:250px;border-radius:11px;display:block;margin-bottom:4px;cursor:zoom-in}
+  .msg-time{display:block;font-size:10px;margin-top:4px;opacity:.7;text-align:right}
+  .chat-composer{padding:12px;border-top:1px solid var(--border);background:var(--surface);
+                 display:flex;align-items:center;gap:8px}
+  .chat-composer .input{flex:1}
+  .people-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
+  .person-card{
+    border:1px solid var(--border);border-radius:var(--r-md);padding:16px;background:var(--surface);
+    display:flex;flex-direction:column;align-items:center;text-align:center;gap:8px;
+    transition:transform .15s,box-shadow .15s,border-color .15s;
+  }
+  .person-card:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);border-color:color-mix(in srgb,var(--brand) 35%,var(--border))}
+  .person-name{font-weight:800;font-size:14px;line-height:1.25}
+  .person-user{font-size:12px;color:var(--text-2)}
+  .mutual{font-size:11px;font-weight:700;color:var(--brand);background:var(--brand-soft);
+          padding:3px 9px;border-radius:999px}
+  .user-card-row{display:flex;align-items:center;justify-content:space-between;gap:12px;
+                 padding:12px;border:1px solid var(--border);border-radius:var(--r-sm);
+                 margin-bottom:10px;background:var(--surface);flex-wrap:wrap;
+                 transition:background .15s,border-color .15s}
+  .user-card-row.clickable{cursor:pointer}
+  .user-card-row.clickable:hover{background:var(--surface-2);border-color:color-mix(in srgb,var(--brand) 30%,var(--border))}
+  .pill{font-size:10.5px;font-weight:800;padding:3px 9px;border-radius:999px;text-transform:uppercase;
+        letter-spacing:.03em}
+  .pill-admin{background:#FEF3C7;color:#92400E}
+  .pill-danger{background:#FEE2E2;color:#991B1B}
+  .pill-ok{background:#DCFCE7;color:#166534}
+  .pill-muted{background:var(--surface-2);color:var(--text-2)}
+  .pill-info{background:var(--brand-soft);color:var(--brand)}
+  .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+  .stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);
+             padding:16px;border-top:4px solid var(--gold);box-shadow:var(--shadow-sm)}
+  .stat-val{font-size:26px;font-weight:800;color:var(--brand);letter-spacing:-.03em}
+  .stat-lbl{font-size:11.5px;color:var(--text-2);font-weight:800;text-transform:uppercase;letter-spacing:.04em}
+  .grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+  .empty-state{text-align:center;padding:36px 16px;color:var(--text-2);font-size:13.5px;line-height:1.6}
+  .divider{height:1px;background:var(--border);margin:16px 0}
+  .hidden{display:none !important}
+  .search-row{display:flex;gap:8px;margin-bottom:16px}
+  .search-row .input{flex:1}
+  .modal-backdrop{position:fixed;inset:0;background:rgba(20,14,9,.55);backdrop-filter:blur(4px);
+                  z-index:120;display:grid;place-items:center;padding:18px;animation:fade .16s ease}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+  .modal{width:100%;max-width:430px;padding:24px;border-radius:var(--r-lg);box-shadow:var(--shadow-lg);
+         animation:rise .2s cubic-bezier(.2,.9,.3,1.2)}
+  @keyframes rise{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+  .modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+  .modal-head h3{font-size:17px;font-weight:800;letter-spacing:-.01em}
+  .toast-container{position:fixed;bottom:18px;right:18px;z-index:200;display:flex;
+                   flex-direction:column;gap:8px;max-width:340px}
+  .toast{background:#241A12;color:#fff;padding:12px 16px;border-radius:12px;font-size:13px;
+         font-weight:600;box-shadow:var(--shadow-lg);border-left:4px solid var(--gold);
+         animation:slideIn .2s ease}
+  .toast.error{border-left-color:var(--terra)}
+  .toast.success{border-left-color:#34A853}
+  @keyframes slideIn{from{transform:translateY(12px);opacity:0}to{transform:none;opacity:1}}
+  .lightbox{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:150;display:grid;
+            place-items:center;padding:20px;cursor:zoom-out}
+  .lightbox img{max-width:100%;max-height:100%;border-radius:12px;box-shadow:var(--shadow-lg)}
+  .loader-overlay{position:fixed;inset:0;background:var(--bg);z-index:300;display:grid;place-items:center;
+                  font-weight:800;color:var(--brand);gap:14px}
+  .spinner{width:34px;height:34px;border-radius:50%;border:3px solid var(--border);
+           border-top-color:var(--brand);animation:spin .8s linear infinite;margin:0 auto 12px}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  @media (max-width:820px){
+    .topbar{padding:10px 14px}
+    .brand-sub{display:none}
+    .brand-title{font-size:14px}
+    .workspace{padding:12px;gap:12px}
+    .chat-layout{grid-template-columns:1fr;height:auto;min-height:70vh}
+    .chat-layout.mobile-chat-open .friends-sidebar{display:none}
+    .chat-layout:not(.mobile-chat-open) .chat-main{display:none}
+    .mobile-back-btn{display:inline-flex !important}
+    .msg-bubble{max-width:86%}
+    .auth-card{padding:24px 20px}
+    .toast-container{left:14px;right:14px;bottom:14px;max-width:none}
+  }
+  .mobile-back-btn{display:none}
+</style>
+</head>
+<body>
+<div class="tibeb"></div>
+
+<header class="topbar">
+  <div class="brand">
+    <div class="logo">በግ</div>
+    <div>
+      <span class="brand-title">Beg Tera <span class="brand-alt">| በግ ተራ</span></span>
+      <span class="brand-sub" data-i18n="appTagline">Warm Ethiopian Community &amp; Chat</span>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button type="button" class="icon-btn" id="themeBtn" onclick="toggleTheme()" title="Theme">🌙</button>
+    <div class="lang-toggle">
+      <button type="button" id="btnLangEn" onclick="setLanguage('en')">EN</button>
+      <button type="button" id="btnLangAm" onclick="setLanguage('am')">አማ</button>
+    </div>
+    <button type="button" class="btn btn-outline btn-sm hidden" id="btnLogout" onclick="handleLogout()">
+      <span data-i18n="logout">Logout</span>
+    </button>
+  </div>
+</header>
+
+<div id="bootLoader" class="loader-overlay">
+  <div style="text-align:center">
+    <div class="spinner"></div>
+    <span data-i18n="loadingApp">Loading Beg Tera...</span>
+  </div>
+</div>
+
+<main id="authView" class="auth-wrap hidden">
+  <div class="auth-card card">
+    <div class="auth-head">
+      <h2 data-i18n="welcomeHeading">Welcome to Beg Tera</h2>
+      <p data-i18n="welcomeSub">Connect with friends in English and Amharic</p>
+    </div>
+
+    <div class="tabs">
+      <button type="button" class="tab active" id="tabLogin" onclick="switchAuthTab('login')">
+        <span data-i18n="loginTab">Sign In</span>
+      </button>
+      <button type="button" class="tab" id="tabRegister" onclick="switchAuthTab('register')">
+        <span data-i18n="registerTab">Create Account</span>
+      </button>
+    </div>
+
+    <form id="loginForm" onsubmit="handleLogin(event)">
+      <div class="field">
+        <label class="label" data-i18n="usernameLabel">Username</label>
+        <input class="input" id="loginUsername" autocomplete="username" required />
+      </div>
+      <div class="field">
+        <label class="label" data-i18n="passwordLabel">Password</label>
+        <input class="input" type="password" id="loginPassword" autocomplete="current-password" required />
+      </div>
+      <div class="row-between" style="margin:-4px 0 16px">
+        <button type="button" class="link" onclick="openResetModal()">
+          <span data-i18n="forgotPassword">Forgot password?</span>
+        </button>
+      </div>
+      <button type="submit" class="btn btn-primary block" id="btnSubmitLogin">
+        <span data-i18n="loginBtn">Sign In</span>
+      </button>
+    </form>
+
+    <form id="registerForm" class="hidden" onsubmit="handleRegister(event)">
+      <div class="field">
+        <label class="label" data-i18n="displayNameLabel">Display Name</label>
+        <input class="input" id="regDisplayName" maxlength="40" required />
+      </div>
+      <div class="field">
+        <label class="label" data-i18n="usernameLabel">Username</label>
+        <input class="input" id="regUsername" maxlength="20" required />
+        <small class="hint" data-i18n="usernameHint">3-20 lowercase letters, numbers, or _</small>
+      </div>
+      <div class="field">
+        <label class="label" data-i18n="emailLabel">Email (optional)</label>
+        <input class="input" type="email" id="regEmail" autocomplete="email" />
+        <small class="hint" data-i18n="emailHint">Used only for password recovery</small>
+      </div>
+      <div class="field">
+        <label class="label" data-i18n="passwordLabel">Password</label>
+        <input class="input" type="password" id="regPassword" minlength="6" required />
+        <small class="hint" data-i18n="passwordHint">Minimum 6 characters</small>
+      </div>
+      <div class="field">
+        <label class="label" data-i18n="avatarOptionalLabel">Profile Photo (Optional)</label>
+        <input class="input" type="file" id="regAvatarFile" accept="image/png,image/jpeg,image/webp"
+               onchange="previewRegAvatar(event)" />
+        <div id="regAvatarPreviewWrap" class="hidden" style="margin-top:10px;display:flex;align-items:center;gap:10px">
+          <img id="regAvatarPreview" style="width:46px;height:46px;border-radius:50%;object-fit:cover" />
+          <button type="button" class="btn btn-outline btn-sm" onclick="clearRegAvatar()">
+            <span data-i18n="removePhoto">Remove</span>
+          </button>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary block" id="btnSubmitRegister">
+        <span data-i18n="registerBtn">Create Account</span>
+      </button>
+    </form>
+  </div>
+</main>
+
+<main id="appWorkspace" class="workspace hidden">
+  <nav class="nav-bar">
+    <button type="button" class="nav-item active" id="navChats" onclick="switchSection('chats')">
+      💬 <span data-i18n="navChats">Chats</span>
+    </button>
+    <button type="button" class="nav-item" id="navInbox" onclick="switchSection('inbox')">
+      📥 <span data-i18n="navInbox">Inbox</span>
+      <span class="badge hidden" id="inboxBadge">0</span>
+    </button>
+    <button type="button" class="nav-item" id="navDiscover" onclick="switchSection('discover')">
+      ✨ <span data-i18n="navDiscover">Discover</span>
+    </button>
+    <button type="button" class="nav-item" id="navFriends" onclick="switchSection('friends')">
+      👥 <span data-i18n="navFriends">Friends</span>
+      <span class="badge hidden" id="incomingBadge">0</span>
+    </button>
+    <button type="button" class="nav-item" id="navProfile" onclick="switchSection('profile')">
+      👤 <span data-i18n="navProfile">My Profile</span>
+    </button>
+    <button type="button" class="nav-item hidden" id="navAdmin" onclick="switchSection('admin')">
+      🛡️ <span data-i18n="navAdmin">Admin Panel</span>
+    </button>
+  </nav>
+
+  <section id="secChats" class="chat-layout">
+    <div class="panel friends-sidebar">
+      <div class="panel-header">
+        <span class="panel-title" data-i18n="conversationsTitle">Conversations</span>
+        <button type="button" class="btn btn-outline btn-sm" onclick="refreshFriendsAndChat(true)">
+          <span data-i18n="refreshBtn">Refresh</span>
+        </button>
+      </div>
+      <div id="chatFriendsList"></div>
+    </div>
+
+    <div class="panel chat-main">
+      <div class="panel-header">
+        <div style="display:flex;align-items:center;gap:10px;min-width:0">
+          <button type="button" class="btn btn-outline btn-sm mobile-back-btn" onclick="closeMobileChat()">
+            <span data-i18n="backBtn">Back</span>
+          </button>
+          <div id="activeChatAvatar"></div>
+          <div style="min-width:0">
+            <div id="activeChatName" class="panel-title" data-i18n="selectFriendPrompt">Select a friend to chat</div>
+            <div id="activeChatUsername" class="panel-sub"></div>
+          </div>
+        </div>
+      </div>
+
+      <div id="messagesFeed" class="messages-feed">
+        <div class="empty-state" data-i18n="noChatSelectedHint">Choose a friend from the list to start messaging.</div>
+      </div>
+
+      <form id="chatComposer" class="chat-composer hidden" onsubmit="handleSendTextMessage(event)">
+        <input type="file" id="chatImageInput" accept="image/png,image/jpeg,image/webp" class="hidden"
+               onchange="handleSendImageMessage(event)" />
+        <button type="button" class="btn btn-outline btn-sm" onclick="document.getElementById('chatImageInput').click()">
+          📷 <span data-i18n="photoBtn">Photo</span>
+        </button>
+        <input class="input" id="chatTextInput" maxlength="2000"
+               data-i18n-placeholder="typeMessagePlaceholder" placeholder="Write a message..." />
+        <button type="submit" class="btn btn-primary" id="btnSendMsg">
+          <span data-i18n="sendBtn">Send</span>
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <section id="secInbox" class="hidden">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title" data-i18n="inboxRequestsTitle">Friend Requests</div>
+            <div class="panel-sub" data-i18n="inboxRequestsSub">People who want to connect with you</div>
+          </div>
+        </div>
+        <div class="panel-body" id="inboxRequestsList"></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <div>
+            <div class="panel-title" data-i18n="inboxMessagesTitle">Recent Messages</div>
+            <div class="panel-sub" data-i18n="inboxMessagesSub">Newest messages from your friends</div>
+          </div>
+          <button type="button" class="btn btn-outline btn-sm" onclick="refreshFriendsAndChat(true)">
+            <span data-i18n="refreshBtn">Refresh</span>
+          </button>
+        </div>
+        <div class="panel-body" id="inboxMessagesList"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="secDiscover" class="hidden">
+    <div class="panel">
+      <div class="panel-header">
+        <div>
+          <div class="panel-title" data-i18n="discoverTitle">People you may know</div>
+          <div class="panel-sub" data-i18n="discoverSub">Suggested friends based on your connections</div>
+        </div>
+        <button type="button" class="btn btn-outline btn-sm" onclick="loadDiscover(true)">
+          <span data-i18n="refreshBtn">Refresh</span>
+        </button>
+      </div>
+      <div class="panel-body">
+        <form class="search-row" onsubmit="handleSearchUsers(event)">
+          <input class="input" id="searchUserInput"
+                 data-i18n-placeholder="searchUsernamePlaceholder" placeholder="Search by username or name..." />
+          <button type="submit" class="btn btn-primary" id="btnSearchUsers">
+            <span data-i18n="searchBtn">Search</span>
+          </button>
+        </form>
+        <div id="discoverGrid" class="people-grid"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="secFriends" class="hidden">
+    <div class="grid-2">
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title" data-i18n="requestsAndFriendsTitle">Requests</span>
+        </div>
+        <div class="panel-body">
+          <h4 class="label" data-i18n="incomingRequestsHeading">Incoming Requests</h4>
+          <div id="incomingRequestsList" style="margin-bottom:18px"></div>
+
+          <h4 class="label" data-i18n="outgoingRequestsHeading">Sent Requests</h4>
+          <div id="outgoingRequestsList"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-header">
+          <span class="panel-title" data-i18n="myFriendsHeading">My Friends</span>
+        </div>
+        <div class="panel-body">
+          <div id="manageFriendsList"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="secProfile" class="hidden">
+    <div class="panel" style="max-width:620px;margin:0 auto;width:100%">
+      <div class="panel-header">
+        <span class="panel-title" data-i18n="profileSettingsTitle">Profile Settings</span>
+      </div>
+      <div class="panel-body">
+        <form onsubmit="handleUpdateProfile(event)">
+          <div style="display:flex;align-items:center;gap:16px;margin-bottom:20px;flex-wrap:wrap">
+            <div id="profileAvatarPreview"></div>
+            <div>
+              <div id="profileStaticUsername" style="font-weight:800;font-size:15px"></div>
+              <div style="display:flex;gap:8px;margin-top:8px;flex-wrap:wrap">
+                <label class="btn btn-outline btn-sm" style="cursor:pointer">
+                  <span data-i18n="changePhotoBtn">Change Photo</span>
+                  <input type="file" accept="image/png,image/jpeg,image/webp" class="hidden"
+                         onchange="handleProfileAvatarChange(event)" />
+                </label>
+                <button type="button" class="btn btn-outline btn-sm" onclick="removeProfileAvatar()">
+                  <span data-i18n="removePhoto">Remove</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="label" data-i18n="displayNameLabel">Display Name</label>
+            <input class="input" id="profDisplayName" maxlength="40" required />
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="emailLabel">Email (optional)</label>
+            <input class="input" type="email" id="profEmail" />
+            <small class="hint" data-i18n="emailHint">Used only for password recovery</small>
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="bioLabel">Bio</label>
+            <textarea class="input" id="profBio" rows="3" maxlength="160"
+                      data-i18n-placeholder="bioPlaceholder" placeholder="Tell friends a little about yourself..."></textarea>
+          </div>
+
+          <div class="divider"></div>
+          <h4 class="panel-title" style="margin-bottom:12px" data-i18n="changePasswordHeading">Change Password (Optional)</h4>
+
+          <div class="field">
+            <label class="label" data-i18n="currentPasswordLabel">Current Password</label>
+            <input class="input" type="password" id="profCurrentPassword" autocomplete="current-password" />
+          </div>
+          <div class="field">
+            <label class="label" data-i18n="newPasswordLabel">New Password</label>
+            <input class="input" type="password" id="profNewPassword" minlength="6" autocomplete="new-password" />
+          </div>
+
+          <button type="submit" class="btn btn-primary" id="btnSaveProfile">
+            <span data-i18n="saveProfileBtn">Save Changes</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section id="secAdmin" class="hidden">
+    <div class="stats-grid" style="margin-bottom:16px">
+      <div class="stat-card"><div class="stat-val" id="statTotalUsers">0</div>
+        <div class="stat-lbl" data-i18n="statTotalUsers">Total Users</div></div>
+      <div class="stat-card"><div class="stat-val" id="statActiveUsers">0</div>
+        <div class="stat-lbl" data-i18n="statActiveUsers">Active</div></div>
+      <div class="stat-card"><div class="stat-val" id="statSuspendedUsers">0</div>
+        <div class="stat-lbl" data-i18n="statSuspendedUsers">Suspended</div></div>
+      <div class="stat-card"><div class="stat-val" id="statTotalMessages">0</div>
+        <div class="stat-lbl" data-i18n="statTotalMessages">Messages</div></div>
+      <div class="stat-card"><div class="stat-val" id="statTotalFriendships">0</div>
+        <div class="stat-lbl" data-i18n="statTotalFriendships">Friendships</div></div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <span class="panel-title" data-i18n="adminUsersTitle">User Management</span>
+        <button type="button" class="btn btn-outline btn-sm" onclick="loadAdminPanel()">
+          <span data-i18n="refreshBtn">Refresh</span>
+        </button>
+      </div>
+      <div class="panel-body" id="adminUsersList"></div>
+    </div>
+  </section>
+</main>
+
+<div id="resetModal" class="modal-backdrop hidden" onclick="if(event.target===this)closeResetModal()">
+  <div class="modal card">
+    <div class="modal-head">
+      <h3 data-i18n="resetTitle">Reset your password</h3>
+      <button type="button" class="icon-btn" onclick="closeResetModal()">✕</button>
+    </div>
+
+    <p class="hint" id="resetHint" data-i18n="resetStep1Hint">
+      Enter your username and we will email you a 6-digit code.
+    </p>
+
+    <div class="divider"></div>
+
+    <div class="field">
+      <label class="label" data-i18n="usernameLabel">Username</label>
+      <input class="input" id="resetUsername" autocomplete="username" />
+    </div>
+    <button type="button" class="btn btn-gold block" id="btnSendCode" onclick="sendResetCode()">
+      <span data-i18n="sendCodeBtn">Send reset code</span>
+    </button>
+
+    <div id="resetStep2" class="hidden">
+      <div class="divider"></div>
+      <div class="field">
+        <label class="label" data-i18n="resetCodeLabel">6-digit code</label>
+        <input class="input" id="resetCode" inputmode="numeric" maxlength="6" autocomplete="one-time-code" />
+        <small class="hint" data-i18n="resetCodeHint">Check your inbox (and spam folder).</small>
+      </div>
+      <div class="field">
+        <label class="label" data-i18n="newPasswordLabel">New Password</label>
+        <input class="input" type="password" id="resetNewPassword" autocomplete="new-password" />
+      </div>
+      <div class="field">
+        <label class="label" data-i18n="confirmPasswordLabel">Confirm Password</label>
+        <input class="input" type="password" id="resetConfirmPassword" autocomplete="new-password" />
+      </div>
+      <button type="button" class="btn btn-primary block" id="btnResetPw" onclick="submitReset()">
+        <span data-i18n="resetBtn">Reset password</span>
+      </button>
+    </div>
+
+    <div style="text-align:center;margin-top:14px">
+      <button type="button" class="link" onclick="closeResetModal()">
+        <span data-i18n="backToLogin">Back to sign in</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="lightbox" class="lightbox hidden" onclick="closeLightbox()">
+  <img id="lightboxImg" alt="" />
+</div>
+
+<div class="toast-container" id="toastContainer"></div>
+
+<script>
+/* =========================================================================
+   API_CONFIG — URL of your deployed Apps Script Web App.
+   Only needed when hosting this file OUTSIDE Apps Script (e.g. GitHub Pages).
+   Leave as-is when using Apps Script HTML hosting.
+   Format: https://script.google.com/macros/s/XXXXX/exec
+   ========================================================================= */
+const API_URL = 'https://script.google.com/macros/s/AKfycbzJ9tlTpiUt_vpUAFr9eqJVYGp8V1S8YH1SMJg4QroGCbor59bY0v-Y_UyWrlYu5hOeVg/exec';
+
+/* =========================================================================
+   1. BILINGUAL DICTIONARY
+   ========================================================================= */
+const I18N = {
+  en: {
+    appTagline: 'Warm Ethiopian Community & Chat',
+    loadingApp: 'Loading Beg Tera...',
+    logout: 'Logout',
+    welcomeHeading: 'Welcome to Beg Tera',
+    welcomeSub: 'Connect with friends in English and Amharic',
+    loginTab: 'Sign In',
+    registerTab: 'Create Account',
+    usernameLabel: 'Username',
+    passwordLabel: 'Password',
+    displayNameLabel: 'Display Name',
+    emailLabel: 'Email (optional)',
+    emailHint: 'Used only for password recovery',
+    usernameHint: '3-20 lowercase letters, numbers, or _',
+    passwordHint: 'Minimum 6 characters',
+    avatarOptionalLabel: 'Profile Photo (Optional)',
+    removePhoto: 'Remove',
+    loginBtn: 'Sign In',
+    registerBtn: 'Create Account',
+    forgotPassword: 'Forgot password?',
+    navChats: 'Chats',
+    navInbox: 'Inbox',
+    navDiscover: 'Discover',
+    navFriends: 'Friends',
+    navProfile: 'My Profile',
+    navAdmin: 'Admin Panel',
+    conversationsTitle: 'Conversations',
+    refreshBtn: 'Refresh',
+    backBtn: 'Back',
+    selectFriendPrompt: 'Select a friend to chat',
+    noChatSelectedHint: 'Choose a friend from the list to start messaging.',
+    noFriendsYet: 'No friends yet. Head to Discover to meet people!',
+    photoBtn: 'Photo',
+    typeMessagePlaceholder: 'Write a message...',
+    sendBtn: 'Send',
+    sentImagePreview: 'Sent a photo',
+    inboxRequestsTitle: 'Friend Requests',
+    inboxRequestsSub: 'People who want to connect with you',
+    inboxMessagesTitle: 'Recent Messages',
+    inboxMessagesSub: 'Newest messages from your friends',
+    inboxEmptyRequests: 'No pending friend requests.',
+    inboxEmptyMessages: 'No new messages yet.',
+    inboxUnreadSuffix: 'unread',
+    discoverTitle: 'People you may know',
+    discoverSub: 'Suggested friends based on your connections',
+    discoverEmpty: 'No suggestions right now — try searching for a name above.',
+    mutualFriends: 'mutual',
+    findFriendsTitle: 'Find People',
+    searchUsernamePlaceholder: 'Search by username or name...',
+    searchBtn: 'Search',
+    noUsersFound: 'No matching users found.',
+    requestsAndFriendsTitle: 'Requests',
+    incomingRequestsHeading: 'Incoming Requests',
+    outgoingRequestsHeading: 'Sent Requests',
+    myFriendsHeading: 'My Friends',
+    noIncomingRequests: 'No incoming requests.',
+    noOutgoingRequests: 'No pending sent requests.',
+    addFriendBtn: 'Add Friend',
+    requestSentBadge: 'Request Sent',
+    alreadyFriendsBadge: 'Friends',
+    acceptBtn: 'Accept',
+    declineBtn: 'Decline',
+    cancelReqBtn: 'Cancel',
+    removeFriendBtn: 'Remove',
+    openChatBtn: 'Chat',
+    profileSettingsTitle: 'Profile Settings',
+    changePhotoBtn: 'Change Photo',
+    bioLabel: 'Bio',
+    bioPlaceholder: 'Tell friends a little about yourself...',
+    changePasswordHeading: 'Change Password (Optional)',
+    currentPasswordLabel: 'Current Password',
+    newPasswordLabel: 'New Password',
+    confirmPasswordLabel: 'Confirm Password',
+    saveProfileBtn: 'Save Changes',
+    statTotalUsers: 'Total Users',
+    statActiveUsers: 'Active',
+    statSuspendedUsers: 'Suspended',
+    statTotalMessages: 'Messages',
+    statTotalFriendships: 'Friendships',
+    adminUsersTitle: 'User Management',
+    roleAdmin: 'Admin',
+    roleUser: 'Member',
+    statusActive: 'Active',
+    statusSuspended: 'Suspended',
+    suspendBtn: 'Suspend',
+    activateBtn: 'Activate',
+    promoteBtn: 'Make Admin',
+    demoteBtn: 'Remove Admin',
+    deleteUserBtn: 'Delete',
+    confirmRemoveFriend: 'Remove this person from your friends list?',
+    confirmDeleteUser: 'Permanently delete this user and all their messages?',
+    resetTitle: 'Reset your password',
+    resetStep1Hint: 'Enter your username and we will email you a 6-digit code.',
+    sendCodeBtn: 'Send reset code',
+    resetCodeLabel: '6-digit code',
+    resetCodeHint: 'Check your inbox (and spam folder).',
+    resetBtn: 'Reset password',
+    backToLogin: 'Back to sign in',
+    passwordMismatch: 'Passwords do not match.',
+    msgLoggedIn: 'Welcome back!',
+    msgRegistered: 'Account created! Welcome to Beg Tera.',
+    msgLoggedOut: 'You have signed out.',
+    msgProfileSaved: 'Profile updated successfully.',
+    msgRequestSent: 'Friend request sent.',
+    msgRequestAccepted: 'Friend request accepted!',
+    msgRequestDeclined: 'Request removed.',
+    msgFriendRemoved: 'Friend removed.',
+    msgAdminUpdated: 'User account updated.',
+    msgUserDeleted: 'User account deleted.',
+    msgResetCodeSent: 'If that account has an email on file, a code is on its way.',
+    msgPasswordReset: 'Password reset successful. Please sign in.',
+    errInvalidImageType: 'Please select a valid PNG, JPEG, or WebP image.',
+    errImageTooLarge: 'Image is too large (max 4MB input).',
+    errGeneric: 'Something went wrong. Please try again.',
+    INVALID_USERNAME: 'Username must be 3-20 lowercase letters, numbers, or underscores.',
+    INVALID_DISPLAY_NAME: 'Display name must be 2-40 characters.',
+    WEAK_PASSWORD: 'Password must be at least 6 characters.',
+    USERNAME_TAKEN: 'That username is already taken.',
+    INVALID_EMAIL: 'Please enter a valid email address.',
+    INVALID_CREDENTIALS: 'Incorrect username or password.',
+    ACCOUNT_SUSPENDED: 'Your account has been suspended by an administrator.',
+    WRONG_CURRENT_PASSWORD: 'Your current password is incorrect.',
+    SELF_REQUEST: 'You cannot send a friend request to yourself.',
+    ALREADY_FRIENDS: 'You are already friends with this user.',
+    REQUEST_EXISTS: 'A friend request already exists.',
+    NOT_FRIENDS: 'You can only exchange messages with accepted friends.',
+    IMAGE_TOO_LARGE: 'The selected image exceeds the allowed size.',
+    INVALID_IMAGE_TYPE: 'Unsupported image format.',
+    NO_EMAIL: 'No email address on file for this account. Please contact an administrator.',
+    INVALID_RESET_CODE: 'That reset code is invalid.',
+    RESET_EXPIRED: 'This code has expired. Please request a new one.',
+    TOO_MANY_ATTEMPTS: 'Too many attempts. Please request a new code.',
+    EMAIL_FAILED: 'Could not send the email. Please try again later.',
+    UNAUTHORIZED: 'Your session expired. Please sign in again.',
+    FORBIDDEN: 'You do not have permission to do that.'
+  },
+  am: {
+    appTagline: 'የኢትዮጵያውያን ወዳጅነት እና የውይይት መድረክ',
+    loadingApp: 'በግ ተራ በመጫን ላይ ነው...',
+    logout: 'ውጣ',
+    welcomeHeading: 'እንኳን ወደ በግ ተራ በደህና መጡ',
+    welcomeSub: 'በአማርኛ እና በእንግሊዝኛ ከጓደኞችዎ ጋር ይገናኙ',
+    loginTab: 'ግባ',
+    registerTab: 'መለያ ክፈት',
+    usernameLabel: 'የተጠቃሚ ስም',
+    passwordLabel: 'የይለፍ ቃል',
+    displayNameLabel: 'መጠሪያ ስም',
+    emailLabel: 'ኢሜይል (አማራጭ)',
+    emailHint: 'ለይለፍ ቃል መመለሻ ብቻ ያገለግላል',
+    usernameHint: 'ከ3-20 የእንግሊዝኛ ፊደላት፣ ቁጥሮች ወይም _',
+    passwordHint: 'ቢያንስ 6 ፊደላት',
+    avatarOptionalLabel: 'የመገለጫ ፎቶ (አማራጭ)',
+    removePhoto: 'አስወግድ',
+    loginBtn: 'ግባ',
+    registerBtn: 'መለያ ክፈት',
+    forgotPassword: 'የይለፍ ቃል ረሱ?',
+    navChats: 'ውይይቶች',
+    navInbox: 'መልዕክት ሳጥን',
+    navDiscover: 'አግኝ',
+    navFriends: 'ጓደኞች',
+    navProfile: 'የእኔ መገለጫ',
+    navAdmin: 'የአስተዳዳሪ ክፍል',
+    conversationsTitle: 'ውይይቶች',
+    refreshBtn: 'አድስ',
+    backBtn: 'ተመለስ',
+    selectFriendPrompt: 'ለመወያየት ጓደኛ ይምረጡ',
+    noChatSelectedHint: 'መልእክት ለመላክ ከዝርዝሩ ውስጥ ጓደኛ ይምረጡ።',
+    noFriendsYet: 'እስካሁን ጓደኞች የሉዎትም። ሰዎችን ለማግኘት ወደ "አግኝ" ይሂዱ!',
+    photoBtn: 'ፎቶ',
+    typeMessagePlaceholder: 'መልእክት ይጻፉ...',
+    sendBtn: 'ላክ',
+    sentImagePreview: 'ፎቶ ተልኳል',
+    inboxRequestsTitle: 'የጓደኝነት ጥያቄዎች',
+    inboxRequestsSub: 'ከእርስዎ ጋር መገናኘት የሚፈልጉ ሰዎች',
+    inboxMessagesTitle: 'የቅርብ መልእክቶች',
+    inboxMessagesSub: 'ከጓደኞችዎ የመጡ አዲስ መልእክቶች',
+    inboxEmptyRequests: 'በመጠባበቅ ላይ ያለ ጥያቄ የለም።',
+    inboxEmptyMessages: 'እስካሁን አዲስ መልእክት የለም።',
+    inboxUnreadSuffix: 'ያልተነበቡ',
+    discoverTitle: 'ልታወቁዋቸው የሚችሉ ሰዎች',
+    discoverSub: 'በግንኙነቶችዎ ላይ የተመሠረቱ የጓደኝነት ጥቆማዎች',
+    discoverEmpty: 'አሁን ምንም ጥቆማ የለም — ከላይ በስም ይፈልጉ።',
+    mutualFriends: 'የጋራ ጓደኛ',
+    findFriendsTitle: 'ሰዎችን ይፈልጉ',
+    searchUsernamePlaceholder: 'በተጠቃሚ ስም ወይም በስም ይፈልጉ...',
+    searchBtn: 'ፈልግ',
+    noUsersFound: 'ምንም ተጠቃሚ አልተገኘም።',
+    requestsAndFriendsTitle: 'ጥያቄዎች',
+    incomingRequestsHeading: 'የመጡ ጥያቄዎች',
+    outgoingRequestsHeading: 'የተላኩ ጥያቄዎች',
+    myFriendsHeading: 'ጓደኞቼ',
+    noIncomingRequests: 'ምንም አዲስ ጥያቄ የለም።',
+    noOutgoingRequests: 'በመጠባበቅ ላይ ያለ ጥያቄ የለም።',
+    addFriendBtn: 'ጓደኛ አድርግ',
+    requestSentBadge: 'ጥያቄ ተልኳል',
+    alreadyFriendsBadge: 'ጓደኛሞች',
+    acceptBtn: 'ተቀበል',
+    declineBtn: 'አትቀበል',
+    cancelReqBtn: 'ሰርዝ',
+    removeFriendBtn: 'አስወግድ',
+    openChatBtn: 'አውራ',
+    profileSettingsTitle: 'የመገለጫ ቅንብሮች',
+    changePhotoBtn: 'ፎቶ ቀይር',
+    bioLabel: 'ስለ እኔ',
+    bioPlaceholder: 'ስለራስዎ ጥቂት ይጻፉ...',
+    changePasswordHeading: 'የይለፍ ቃል ቀይር (አማራጭ)',
+    currentPasswordLabel: 'የአሁኑ የይለፍ ቃል',
+    newPasswordLabel: 'አዲስ የይለፍ ቃል',
+    confirmPasswordLabel: 'የይለፍ ቃሉን ያረጋግጡ',
+    saveProfileBtn: 'ለውጦችን አስቀምጥ',
+    statTotalUsers: 'ጠቅላላ ተጠቃሚዎች',
+    statActiveUsers: 'ንቁ',
+    statSuspendedUsers: 'የታገዱ',
+    statTotalMessages: 'መልእክቶች',
+    statTotalFriendships: 'ጓደኝነቶች',
+    adminUsersTitle: 'የተጠቃሚዎች አስተዳደር',
+    roleAdmin: 'አስተዳዳሪ',
+    roleUser: 'አባል',
+    statusActive: 'ንቁ',
+    statusSuspended: 'የታገደ',
+    suspendBtn: 'አግድ',
+    activateBtn: 'ፍቀድ',
+    promoteBtn: 'አስተዳዳሪ አድርግ',
+    demoteBtn: 'አስተዳዳሪነት አንሳ',
+    deleteUserBtn: 'ሰርዝ',
+    confirmRemoveFriend: 'ይህን ሰው ከጓደኞችዎ ዝርዝር ማስወገድ ይፈልጋሉ?',
+    confirmDeleteUser: 'ይህን ተጠቃሚ እና ሁሉንም መልእክቶቹን መሰረዝ ይፈልጋሉ?',
+    resetTitle: 'የይለፍ ቃልዎን ያድሱ',
+    resetStep1Hint: 'የተጠቃሚ ስምዎን ያስገቡ፤ 6 አሃዝ ኮድ በኢሜይል እንልክልዎታለን።',
+    sendCodeBtn: 'ኮድ ላክ',
+    resetCodeLabel: 'የ6 አሃዝ ኮድ',
+    resetCodeHint: 'ኢሜይልዎን (እና ስፓም ሳጥንዎን) ይመልከቱ።',
+    resetBtn: 'የይለፍ ቃል ቀይር',
+    backToLogin: 'ወደ መግቢያ ተመለስ',
+    passwordMismatch: 'የይለፍ ቃላቱ አይመሳሰሉም።',
+    msgLoggedIn: 'እንኳን በደህና ተመለሱ!',
+    msgRegistered: 'መለያዎ ተፈጥሯል! እንኳን ወደ በግ ተራ በደህና መጡ።',
+    msgLoggedOut: 'ከመለያዎ ወጥተዋል።',
+    msgProfileSaved: 'መገለጫዎ ተዘምኗል።',
+    msgRequestSent: 'የጓደኝነት ጥያቄ ተልኳል።',
+    msgRequestAccepted: 'የጓደኝነት ጥያቄውን ተቀብለዋል!',
+    msgRequestDeclined: 'ጥያቄው ተሰርዟል።',
+    msgFriendRemoved: 'ከጓደኝነት ዝርዝር ተወግዷል።',
+    msgAdminUpdated: 'የተጠቃሚው ሁኔታ ተዘምኗል።',
+    msgUserDeleted: 'የተጠቃሚው መለያ ተሰርዟል።',
+    msgResetCodeSent: 'መለያው ኢሜይል ካለው ኮድ ተልኳል።',
+    msgPasswordReset: 'የይለፍ ቃል በተሳካ ሁኔታ ተቀይሯል። እባክዎ ይግቡ።',
+    errInvalidImageType: 'እባክዎ ትክክለኛ PNG, JPEG ወይም WebP ምስል ይምረጡ።',
+    errImageTooLarge: 'ምስሉ በጣም ትልቅ ነው (ከ4MB በታች ይምረጡ)።',
+    errGeneric: 'ስህተት ተፈጥሯል። እባክዎ እንደገና ይሞክሩ።',
+    INVALID_USERNAME: 'የተጠቃሚ ስም ከ3-20 የእንግሊዝኛ ፊደላት፣ ቁጥሮች ወይም _ መሆን አለበት።',
+    INVALID_DISPLAY_NAME: 'መጠሪያ ስም ከ2-40 ፊደላት መሆን አለበት።',
+    WEAK_PASSWORD: 'የይለፍ ቃል ቢያንስ 6 ፊደላት መሆን አለበት።',
+    USERNAME_TAKEN: 'ይህ የተጠቃሚ ስም አስቀድሞ ተይዟል።',
+    INVALID_EMAIL: 'እባክዎ ትክክለኛ የኢሜይል አድራሻ ያስገቡ።',
+    INVALID_CREDENTIALS: 'የተሳሳተ የተጠቃሚ ስም ወይም የይለፍ ቃል።',
+    ACCOUNT_SUSPENDED: 'መለያዎ በአስተዳዳሪ ታግዷል።',
+    WRONG_CURRENT_PASSWORD: 'የአሁኑ የይለፍ ቃል ትክክል አይደለም።',
+    SELF_REQUEST: 'ለራስዎ የጓደኝነት ጥያቄ መላክ አይችሉም።',
+    ALREADY_FRIENDS: 'አስቀድመው ጓደኛሞች ናቸው።',
+    REQUEST_EXISTS: 'የጓደኝነት ጥያቄ አስቀድሞ ተልኳል።',
+    NOT_FRIENDS: 'መልእክት መላላክ የሚችሉት ከጓደኞችዎ ጋር ብቻ ነው።',
+    IMAGE_TOO_LARGE: 'የተመረጠው ፎቶ መጠን ከተፈቀደው በላይ ነው።',
+    INVALID_IMAGE_TYPE: 'የማይደገፍ የምስል አይነት ነው።',
+    NO_EMAIL: 'በዚህ መለያ ላይ ኢሜይል አልተመዘገበም። እባክዎ አስተዳዳሪን ያግኙ።',
+    INVALID_RESET_CODE: 'የኮዱ ስህተት ነው።',
+    RESET_EXPIRED: 'ኮዱ ጊዜው አልፏል። እባክዎ አዲስ ኮድ ይጠይቁ።',
+    TOO_MANY_ATTEMPTS: 'ብዙ ሙከራዎች ተደርገዋል። አዲስ ኮድ ይጠይቁ።',
+    EMAIL_FAILED: 'ኢሜይሉን መላክ አልተቻለም። በኋላ ይሞክሩ።',
+    UNAUTHORIZED: 'ክፍለ ጊዜዎ አልፏል። እባክዎ እንደገና ይግቡ።',
+    FORBIDDEN: 'ይህን ለማድረግ ፈቃድ የለዎትም።'
+  }
+};
+
+/* =========================================================================
+   2. STATE
+   ========================================================================= */
+const LS_LANG = 'beg_tera_lang';
+const LS_THEME = 'beg_tera_theme';
+const LS_TOKEN = 'beg_tera_token';
+const LS_INBOX_SEEN_PREFIX = 'beg_tera_inbox_seen_at_';
+
+const state = {
+  lang: localStorage.getItem(LS_LANG) || 'en',
+  theme: localStorage.getItem(LS_THEME) || 'light',
+  token: localStorage.getItem(LS_TOKEN) || '',
+  user: null,
+  activeSection: 'chats',
+  friends: [],
+  incomingRequests: [],
+  outgoingRequests: [],
+  inboxData: { recentMessages: [] },
+  selectedFriend: null,
+  messages: [],
+  discover: [],
+  searchResults: null,
+  pollTimer: null,
+  regAvatarBase64: '',
+  profileAvatarBase64: ''
+};
+
+function t(key) {
+  return (I18N[state.lang] && I18N[state.lang][key]) || I18N.en[key] || key;
+}
+
+/* =========================================================================
+   3. LANGUAGE + THEME
+   ========================================================================= */
+function setLanguage(lang) {
+  state.lang = (lang === 'am') ? 'am' : 'en';
+  localStorage.setItem(LS_LANG, state.lang);
+  document.documentElement.lang = state.lang;
+
+  document.getElementById('btnLangEn').classList.toggle('active', state.lang === 'en');
+  document.getElementById('btnLangAm').classList.toggle('active', state.lang === 'am');
+
+  document.querySelectorAll('[data-i18n]').forEach(function(el) {
+    el.textContent = t(el.getAttribute('data-i18n'));
+  });
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+    el.placeholder = t(el.getAttribute('data-i18n-placeholder'));
+  });
+
+  if (state.user) {
+    renderFriendsSidebar();
+    renderMessages();
+    renderRequestsAndFriends();
+    renderInbox();
+    renderDiscover();
+    if (state.activeSection === 'admin' && state.user.role === 'admin') loadAdminPanel();
+  }
+}
+
+function applyTheme() {
+  document.documentElement.setAttribute('data-theme', state.theme);
+  document.getElementById('themeBtn').textContent = state.theme === 'dark' ? '☀️' : '🌙';
+}
+
+function toggleTheme() {
+  state.theme = state.theme === 'dark' ? 'light' : 'dark';
+  localStorage.setItem(LS_THEME, state.theme);
+  applyTheme();
+}
+
+/* =========================================================================
+   4. RPC — dual mode (Apps Script HTML host OR external host like GitHub Pages)
+   ========================================================================= */
+function callServer(fnName) {
+  const args = Array.prototype.slice.call(arguments, 1);
+
+  // Mode 1: served by Apps Script (google.script.run available)
+  if (typeof google !== 'undefined' && google.script && google.script.run) {
+    return new Promise(function(resolve, reject) {
+      google.script.run
+        .withSuccessHandler(resolve)
+        .withFailureHandler(reject)[fnName].apply(null, args);
+    });
+  }
+
+  // Mode 2: external host (e.g. GitHub Pages) — POST JSON to the web app
+  if (!API_URL || API_URL.indexOf('PASTE_YOUR_APPS_SCRIPT') === 0) {
+    return Promise.reject(new Error(
+      'API_URL is not configured. Set it to your deployed Apps Script Web App /exec URL ' +
+      'at the top of the <script> block (or deploy via Apps Script HTML hosting instead).'
+    ));
+  }
+
+  return fetch(API_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+    body: JSON.stringify({ fn: fnName, args: args }),
+    redirect: 'follow'
+  }).then(function(resp) {
+    if (!resp.ok) throw new Error('Network error (' + resp.status + ').');
+    return resp.text();
+  }).then(function(txt) {
+    return JSON.parse(txt);
+  });
+}
+
+/* =========================================================================
+   5. UTILITIES
+   ========================================================================= */
+function showToast(message, type) {
+  const container = document.getElementById('toastContainer');
+  const div = document.createElement('div');
+  div.className = 'toast ' + (type || 'info');
+  div.textContent = message;
+  container.appendChild(div);
+  setTimeout(function() { div.remove(); }, 3800);
+}
+
+function handleServerError(res) {
+  const code = res && res.errorCode;
+  const msg = (code && t(code) !== code) ? t(code) : ((res && res.message) || t('errGeneric'));
+  showToast(msg, 'error');
+}
+
+function escapeHtml(str) {
+  return String(str == null ? '' : str)
+    .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
+
+function renderAvatarHtml(user, large) {
+  const cls = large ? 'avatar avatar-lg' : 'avatar';
+  if (user && user.avatarData && user.avatarData.indexOf('data:image/') === 0) {
+    return '<div class="' + cls + '"><img src="' + user.avatarData + '" alt="avatar" /></div>';
+  }
+  const initial = ((user && (user.displayName || user.username)) || '?').charAt(0).toUpperCase();
+  return '<div class="' + cls + '">' + escapeHtml(initial) + '</div>';
+}
+
+function formatTime(isoStr) {
+  if (!isoStr) return '';
+  const d = new Date(isoStr);
+  if (isNaN(d.getTime())) return '';
+  return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) +
+         ' · ' + d.toLocaleDateString([], { month: 'short', day: 'numeric' });
+}
+
+function openLightbox(src) {
+  document.getElementById('lightboxImg').src = src;
+  document.getElementById('lightbox').classList.remove('hidden');
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.add('hidden');
+  document.getElementById('lightboxImg').src = '';
+}
+
+function processImageFile(file, maxDim, maxChars) {
+  return new Promise(function(resolve, reject) {
+    const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+    if (!file || validTypes.indexOf(file.type) === -1) return reject(new Error('INVALID_TYPE'));
+    if (file.size > 4 * 1024 * 1024) return reject(new Error('TOO_LARGE'));
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const img = new Image();
+      img.onload = function() {
+        let width = img.width, height = img.height;
+        if (width > maxDim || height > maxDim) {
+          if (width > height) { height = Math.round(height * maxDim / width); width = maxDim; }
+          else { width = Math.round(width * maxDim / height); height = maxDim; }
+        }
+        const canvas = document.createElement('canvas');
+        canvas.width = width; canvas.height = height;
+        canvas.getContext('2d').drawImage(img, 0, 0, width, height);
+
+        let quality = 0.78;
+        let dataUrl = canvas.toDataURL('image/jpeg', quality);
+        while (dataUrl.length > maxChars && quality > 0.25) {
+          quality -= 0.12;
+          dataUrl = canvas.toDataURL('image/jpeg', quality);
+        }
+        if (dataUrl.length > maxChars) reject(new Error('TOO_LARGE'));
+        else resolve(dataUrl);
+      };
+      img.onerror = function() { reject(new Error('INVALID_TYPE')); };
+      img.src = e.target.result;
+    };
+    reader.onerror = function() { reject(new Error('INVALID_TYPE')); };
+    reader.readAsDataURL(file);
+  });
+}
+
+/* =========================================================================
+   6. BOOTSTRAP / AUTH FLOW
+   ========================================================================= */
+window.addEventListener('DOMContentLoaded', async function() {
+  applyTheme();
+  setLanguage(state.lang);
+
+  if (state.token) {
+    try {
+      const res = await callServer('getSessionUser', state.token);
+      if (res && res.ok && res.user) {
+        enterAuthenticatedState(res.user);
+      } else {
+        clearSession();
+      }
+    } catch (e) {
+      if (e && e.message && e.message.indexOf('API_URL') !== -1) {
+        showToast(e.message, 'error');
+      }
+      clearSession();
+    }
+  } else {
+    showAuthView();
+  }
+
+  document.getElementById('bootLoader').classList.add('hidden');
+});
+
+function clearSession() {
+  stopPolling();
+  state.token = '';
+  state.user = null;
+  state.selectedFriend = null;
+  state.messages = [];
+  state.inboxData = { recentMessages: [] };
+  localStorage.removeItem(LS_TOKEN);
+  showAuthView();
+}
+
+function showAuthView() {
+  document.getElementById('authView').classList.remove('hidden');
+  document.getElementById('appWorkspace').classList.add('hidden');
+  document.getElementById('btnLogout').classList.add('hidden');
+}
+
+function switchAuthTab(tab) {
+  const isLogin = tab === 'login';
+  document.getElementById('tabLogin').classList.toggle('active', isLogin);
+  document.getElementById('tabRegister').classList.toggle('active', !isLogin);
+  document.getElementById('loginForm').classList.toggle('hidden', !isLogin);
+  document.getElementById('registerForm').classList.toggle('hidden', isLogin);
+}
+
+async function previewRegAvatar(event) {
+  const file = event.target.files[0];
+  if (!file) return;
+  try {
+    const compressed = await processImageFile(file, 160, 40000);
+    state.regAvatarBase64 = compressed;
+    document.getElementById('regAvatarPreview').src = compressed;
+    document.getElementById('regAvatarPreviewWrap').classList.remove('hidden');
+  } catch (err) {
+    event.target.value = '';
+    showToast(err.message === 'TOO_LARGE' ? t('errImageTooLarge') : t('errInvalidImageType'), 'error');
+  }
+}
+
+function clearRegAvatar() {
+  state.regAvatarBase64 = '';
+  document.getElementById('regAvatarFile').value = '';
+  document.getElementById('regAvatarPreviewWrap').classList.add('hidden');
+}
+
+async function handleRegister(event) {
+  event.preventDefault();
+  const btn = document.getElementById('btnSubmitRegister');
+  btn.disabled = true;
+  try {
+    const res = await callServer('registerUser', {
+      displayName: document.getElementById('regDisplayName').value,
+      username: document.getElementById('regUsername').value,
+      email: document.getElementById('regEmail').value,
+      password: document.getElementById('regPassword').value,
+      avatarData: state.regAvatarBase64
+    });
+    if (res && res.ok) {
+      state.token = res.token;
+      localStorage.setItem(LS_TOKEN, res.token);
+      showToast(t('msgRegistered'), 'success');
+      enterAuthenticatedState(res.user);
+    } else {
+      handleServerError(res);
+    }
+  } catch (e) {
+    showToast((e && e.message) || t('errGeneric'), 'error');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function handleLogin(event) {
+  event.preventDefault();
+  const btn = document.getElementById('btnSubmitLogin');
+  btn.disabled = true;
+  try {
+    const res = await callServer('loginUser', {
+      username: document.getElementById('loginUsername').value,
+      password: document.getElementById('loginPassword').value
+    });
+    if (res && res.ok) {
+      state.token = res.token;
+      localStorage.setItem(LS_TOKEN, res.token);
+      showToast(t('msgLoggedIn'), 'success');
+      enterAuthenticatedState(res.user);
+    } else {
+      handleServerError(res);
+    }
+  } catch (e) {
+    showToast((e && e.message) || t('errGeneric'), 'error');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function handleLogout() {
+  const tokenToRevoke = state.token;
+  clearSession();
+  showToast(t('msgLoggedOut'), 'info');
+  try { await callServer('logoutUser', tokenToRevoke); } catch (e) {}
+}
+
+function enterAuthenticatedState(user) {
+  state.user = user;
+
+  // Initialize per-user inbox seen-timestamp so the badge starts clean
+  const seenKey = LS_INBOX_SEEN_PREFIX + user.userId;
+  if (!localStorage.getItem(seenKey)) {
+    localStorage.setItem(seenKey, new Date().toISOString());
+  }
+
+  document.getElementById('authView').classList.add('hidden');
+  document.getElementById('appWorkspace').classList.remove('hidden');
+  document.getElementById('btnLogout').classList.remove('hidden');
+  document.getElementById('navAdmin').classList.toggle('hidden', user.role !== 'admin');
+
+  populateProfileForm();
+  switchSection('chats');
+  refreshFriendsAndChat(true);
+  startPolling();
+}
+
+/* =========================================================================
+   7. NAVIGATION + POLLING
+   ========================================================================= */
+function switchSection(section) {
+  state.activeSection = section;
+  ['chats', 'inbox', 'discover', 'friends', 'profile', 'admin'].forEach(function(sec) {
+    const cap = sec.charAt(0).toUpperCase() + sec.slice(1);
+    const secEl = document.getElementById('sec' + cap);
+    const navEl = document.getElementById('nav' + cap);
+    if (secEl) secEl.classList.toggle('hidden', sec !== section);
+    if (navEl) navEl.classList.toggle('active', sec === section);
+  });
+
+  if (section === 'inbox') {
+    renderInbox();
+    markInboxSeen();
+    updateInboxBadge();
+    refreshFriendsAndChat(false);
+  } else if (section === 'friends') {
+    refreshFriendsAndChat(false);
+  } else if (section === 'discover') {
+    loadDiscover(false);
+  } else if (section === 'profile') {
+    populateProfileForm();
+  } else if (section === 'admin') {
+    loadAdminPanel();
+  }
+}
+
+function startPolling() {
+  stopPolling();
+  state.pollTimer = setInterval(function() {
+    if (!state.token || !state.user) return;
+    refreshFriendsAndChat(false);
+  }, 5000);
+}
+
+function stopPolling() {
+  if (state.pollTimer) {
+    clearInterval(state.pollTimer);
+    state.pollTimer = null;
+  }
+}
+
+async function refreshFriendsAndChat(showFeedback) {
+  if (!state.token) return;
+  try {
+    const res = await callServer('getFriendsOverview', state.token);
+    if (!res || !res.ok) {
+      if (res && res.errorCode === 'UNAUTHORIZED') clearSession();
+      return;
+    }
+    state.friends = res.friends || [];
+    state.incomingRequests = res.incomingRequests || [];
+    state.outgoingRequests = res.outgoingRequests || [];
+    state.inboxData = {
+      recentMessages: (res.inbox && res.inbox.recentMessages) || []
+    };
+
+    const badge = document.getElementById('incomingBadge');
+    if (state.incomingRequests.length > 0) {
+      badge.textContent = state.incomingRequests.length;
+      badge.classList.remove('hidden');
+    } else {
+      badge.classList.add('hidden');
+    }
+
+    renderFriendsSidebar();
+    renderRequestsAndFriends();
+    updateInboxBadge();
+
+    if (state.activeSection === 'inbox') {
+      renderInbox();
+      markInboxSeen();
+      updateInboxBadge();
+    }
+
+    if (state.selectedFriend) {
+      const still = state.friends.find(function(f) {
+        return f.user.userId === state.selectedFriend.userId;
+      });
+      if (!still) {
+        state.selectedFriend = null;
+        resetChatWindow();
+      } else {
+        await loadActiveConversation(false);
+      }
+    }
+  } catch (e) {
+    if (showFeedback) showToast((e && e.message) || t('errGeneric'), 'error');
+  }
+}
+
+/* =========================================================================
+   8. INBOX
+   ========================================================================= */
+function inboxSeenKey() {
+  return LS_INBOX_SEEN_PREFIX + (state.user ? state.user.userId : 'anon');
+}
+
+function markInboxSeen() {
+  if (!state.user) return;
+  localStorage.setItem(inboxSeenKey(), new Date().toISOString());
+}
+
+function updateInboxBadge() {
+  const badge = document.getElementById('inboxBadge');
+  if (!badge) return;
+
+  const seenAt = localStorage.getItem(inboxSeenKey()) || '1970-01-01T00:00:00.000Z';
+  const msgs = (state.inboxData && state.inboxData.recentMessages) || [];
+  const reqs = state.incomingRequests || [];
+
+  const unreadMsgs = msgs.filter(function(m) { return m.createdAt > seenAt; }).length;
+  const total = unreadMsgs + reqs.length;
+
+  if (total > 0) {
+    badge.textContent = total;
+    badge.classList.remove('hidden');
+  } else {
+    badge.classList.add('hidden');
+  }
+}
+
+function renderInbox() {
+  // -- Requests --
+  const reqEl = document.getElementById('inboxRequestsList');
+  const reqs = state.incomingRequests || [];
+  if (reqs.length === 0) {
+    reqEl.innerHTML = '<p class="hint">' + escapeHtml(t('inboxEmptyRequests')) + '</p>';
+  } else {
+    reqEl.innerHTML = reqs.map(function(req) {
+      return '' +
+        '<div class="user-card-row">' +
+          '<div style="display:flex;align-items:center;gap:10px;min-width:0">' +
+            renderAvatarHtml(req.user) +
+            '<div style="min-width:0">' +
+              '<div style="font-weight:800;font-size:13.5px">' + escapeHtml(req.user.displayName) + '</div>' +
+              '<div style="font-size:12px;color:var(--text-2)">@' + escapeHtml(req.user.username) + '</div>' +
+              '<div style="font-size:11px;color:var(--muted);margin-top:2px">' +
+                escapeHtml(formatTime(req.createdAt)) + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div style="display:flex;gap:6px">' +
+            '<button type="button" class="btn btn-primary btn-sm" onclick="respondRequest(\'' +
+              req.friendshipId + '\', \'accept\')">' + escapeHtml(t('acceptBtn')) + '</button>' +
+            '<button type="button" class="btn btn-outline btn-sm" onclick="respondRequest(\'' +
+              req.friendshipId + '\', \'decline\')">' + escapeHtml(t('declineBtn')) + '</button>' +
+          '</div>' +
+        '</div>';
+    }).join('');
+  }
+
+  // -- Recent messages --
+  const msgEl = document.getElementById('inboxMessagesList');
+  const msgs = (state.inboxData && state.inboxData.recentMessages) || [];
+  if (msgs.length === 0) {
+    msgEl.innerHTML = '<p class="hint">' + escapeHtml(t('inboxEmptyMessages')) + '</p>';
+    return;
+  }
+
+  const seenAt = localStorage.getItem(inboxSeenKey()) || '1970-01-01T00:00:00.000Z';
+
+  msgEl.innerHTML = msgs.map(function(m) {
+    const isFriend = state.friends.some(function(f) { return f.user.userId === m.senderId; });
+    const unread = m.createdAt > seenAt;
+    const preview = m.type === 'image'
+      ? '📷 ' + escapeHtml(t('sentImagePreview'))
+      : escapeHtml(m.preview || '');
+
+    const onclick = isFriend
+      ? 'onclick="switchSection(\'chats\');selectFriendForChat(\'' + m.senderId + '\')"'
+      : '';
+
+    return '' +
+      '<div class="user-card-row ' + (isFriend ? 'clickable' : '') + '" ' + onclick + '>' +
+        '<div style="display:flex;align-items:center;gap:10px;min-width:0;flex:1">' +
+          renderAvatarHtml({ displayName: m.senderName, avatarData: m.senderAvatar }) +
+          '<div style="min-width:0;flex:1">' +
+            '<div style="display:flex;align-items:center;gap:6px;min-width:0">' +
+              '<div style="font-weight:800;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">' +
+                escapeHtml(m.senderName) + '</div>' +
+              (unread ? '<span class="pill pill-info">' + escapeHtml(t('inboxUnreadSuffix')) + '</span>' : '') +
+            '</div>' +
+            '<div style="font-size:12px;color:var(--text-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:260px">' +
+              preview + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="font-size:11px;color:var(--muted);white-space:nowrap;align-self:flex-start;margin-top:2px">' +
+          escapeHtml(formatTime(m.createdAt)) + '</div>' +
+      '</div>';
+  }).join('');
+}
+
+/* =========================================================================
+   9. CHAT
+   ========================================================================= */
+function renderFriendsSidebar() {
+  const container = document.getElementById('chatFriendsList');
+  if (state.friends.length === 0) {
+    container.innerHTML = '<div class="empty-state">' + escapeHtml(t('noFriendsYet')) + '</div>';
+    return;
+  }
+  container.innerHTML = state.friends.map(function(item) {
+    const f = item.user;
+    const isActive = state.selectedFriend && state.selectedFriend.userId === f.userId;
+    let preview = '@' + f.username;
+    if (item.lastMessage) {
+      preview = item.lastMessage.type === 'image'
+        ? '📷 ' + t('sentImagePreview')
+        : item.lastMessage.content;
+    }
+    return '' +
+      '<div class="friend-row ' + (isActive ? 'active' : '') + '" onclick="selectFriendForChat(\'' + f.userId + '\')">' +
+        renderAvatarHtml(f) +
+        '<div class="friend-info">' +
+          '<div class="friend-name">' + escapeHtml(f.displayName) + '</div>' +
+          '<div class="friend-sub">' + escapeHtml(preview) + '</div>' +
+        '</div>' +
+      '</div>';
+  }).join('');
+}
+
+async function selectFriendForChat(friendUserId) {
+  const entry = state.friends.find(function(f) { return f.user.userId === friendUserId; });
+  if (!entry) return;
+
+  state.selectedFriend = entry.user;
+  renderFriendsSidebar();
+
+  document.getElementById('secChats').classList.add('mobile-chat-open');
+  document.getElementById('activeChatAvatar').innerHTML = renderAvatarHtml(entry.user);
+  document.getElementById('activeChatName').textContent = entry.user.displayName;
+  document.getElementById('activeChatUsername').textContent =
+    '@' + entry.user.username + (entry.user.bio ? ' · ' + entry.user.bio : '');
+  document.getElementById('chatComposer').classList.remove('hidden');
+
+  await loadActiveConversation(true);
+}
+
+function closeMobileChat() {
+  document.getElementById('secChats').classList.remove('mobile-chat-open');
+}
+
+function resetChatWindow() {
+  document.getElementById('secChats').classList.remove('mobile-chat-open');
+  document.getElementById('activeChatAvatar').innerHTML = '';
+  document.getElementById('activeChatName').textContent = t('selectFriendPrompt');
+  document.getElementById('activeChatUsername').textContent = '';
+  document.getElementById('chatComposer').classList.add('hidden');
+  document.getElementById('messagesFeed').innerHTML =
+    '<div class="empty-state">' + escapeHtml(t('noChatSelectedHint')) + '</div>';
+}
+
+async function loadActiveConversation(forceScroll) {
+  if (!state.selectedFriend || !state.token) return;
+  const res = await callServer('getMessages', state.token, state.selectedFriend.userId);
+  if (!res || !res.ok) return;
+  const prevCount = state.messages.length;
+  state.messages = res.messages || [];
+  renderMessages(forceScroll || state.messages.length > prevCount);
+}
+
+function renderMessages(scrollToBottom) {
+  const feed = document.getElementById('messagesFeed');
+  if (!state.selectedFriend || !state.user) return;
+
+  if (state.messages.length === 0) {
+    feed.innerHTML = '<div class="empty-state">👋 ' + escapeHtml(state.selectedFriend.displayName) + '</div>';
+    return;
+  }
+
+  const wasAtBottom = feed.scrollHeight - feed.scrollTop - feed.clientHeight < 70;
+
+  feed.innerHTML = state.messages.map(function(m) {
+    const isMine = m.senderId === state.user.userId;
+    const body = m.type === 'image'
+      ? '<img src="' + m.content + '" class="msg-img" alt="photo" onclick="event.stopPropagation();openLightbox(this.src)" />'
+      : '<div>' + escapeHtml(m.content) + '</div>';
+    return '' +
+      '<div class="msg-bubble ' + (isMine ? 'msg-out' : 'msg-in') + '">' +
+        body +
+        '<span class="msg-time">' + escapeHtml(formatTime(m.createdAt)) + '</span>' +
+      '</div>';
+  }).join('');
+
+  if (scrollToBottom || wasAtBottom) feed.scrollTop = feed.scrollHeight;
+}
+
+async function handleSendTextMessage(event) {
+  event.preventDefault();
+  if (!state.selectedFriend) return;
+  const input = document.getElementById('chatTextInput');
+  const text = input.value.trim();
+  if (!text) return;
+
+  const btn = document.getElementById('btnSendMsg');
+  btn.disabled = true;
+  input.value = '';
+
+  try {
+    const res = await callServer('sendMessage', state.token, {
+      receiverId: state.selectedFriend.userId,
+      type: 'text',
+      content: text
+    });
+    if (res && res.ok && res.message) {
+      state.messages.push(res.message);
+      renderMessages(true);
+      refreshFriendsAndChat(false);
+    } else {
+      input.value = text;
+      handleServerError(res);
+    }
+  } catch (e) {
+    input.value = text;
+    showToast((e && e.message) || t('errGeneric'), 'error');
+  } finally {
+    btn.disabled = false;
+    input.focus();
+  }
+}
+
+async function handleSendImageMessage(event) {
+  const file = event.target.files[0];
+  event.target.value = '';
+  if (!file || !state.selectedFriend) return;
+
+  try {
+    const compressed = await processImageFile(file, 640, 45000);
+    const res = await callServer('sendMessage', state.token, {
+      receiverId: state.selectedFriend.userId,
+      type: 'image',
+      content: compressed
+    });
+    if (res && res.ok && res.message) {
+      state.messages.push(res.message);
+      renderMessages(true);
+      refreshFriendsAndChat(false);
+    } else {
+      handleServerError(res);
+    }
+  } catch (err) {
+    showToast(err.message === 'TOO_LARGE' ? t('errImageTooLarge') : t('errInvalidImageType'), 'error');
+  }
+}
+
+/* =========================================================================
+   10. DISCOVER / SEARCH
+   ========================================================================= */
+async function loadDiscover(showFeedback) {
+  if (!state.token) return;
+  try {
+    const res = await callServer('getDiscoverUsers', state.token);
+    if (res && res.ok) {
+      state.discover = res.suggestions || [];
+      if (state.searchResults === null) renderDiscover();
+    } else if (res && res.errorCode === 'UNAUTHORIZED') {
+      clearSession();
+    } else if (showFeedback) {
+      handleServerError(res);
+    }
+  } catch (e) {
+    if (showFeedback) showToast((e && e.message) || t('errGeneric'), 'error');
+  }
+}
+
+function renderDiscover() {
+  const grid = document.getElementById('discoverGrid');
+  if (!grid) return;
+  const list = state.searchResults !== null ? state.searchResults : state.discover;
+
+  if (!list || list.length === 0) {
+    grid.innerHTML = '<div class="empty-state" style="grid-column:1/-1">' +
+      escapeHtml(t('discoverEmpty')) + '</div>';
+    return;
+  }
+
+  grid.innerHTML = list.map(function(item) {
+    const u = item.user;
+    let action = '';
+    if (item.relationStatus === 'friends') {
+      action = '<span class="pill pill-ok">' + escapeHtml(t('alreadyFriendsBadge')) + '</span>';
+    } else if (item.relationStatus === 'outgoing_pending') {
+      action = '<span class="pill pill-admin">' + escapeHtml(t('requestSentBadge')) + '</span>';
+    } else if (item.relationStatus === 'incoming_pending') {
+      action = '<button type="button" class="btn btn-primary btn-sm" onclick="respondRequest(\'' +
+        item.friendshipId + '\', \'accept\')">' + escapeHtml(t('acceptBtn')) + '</button>';
+    } else {
+      action = '<button type="button" class="btn btn-gold btn-sm" onclick="sendRequest(\'' +
+        u.userId + '\')">' + escapeHtml(t('addFriendBtn')) + '</button>';
+    }
+
+    const mutual = (item.mutualFriends && item.mutualFriends > 0)
+      ? '<div class="mutual">' + item.mutualFriends + ' ' + escapeHtml(t('mutualFriends')) + '</div>'
+      : '';
+
+    return '' +
+      '<div class="person-card">' +
+        renderAvatarHtml(u, true) +
+        '<div class="person-name">' + escapeHtml(u.displayName) + '</div>' +
+        '<div class="person-user">@' + escapeHtml(u.username) + '</div>' +
+        mutual +
+        '<div style="margin-top:6px">' + action + '</div>' +
+      '</div>';
+  }).join('');
+}
+
+async function handleSearchUsers(event) {
+  event.preventDefault();
+  const query = document.getElementById('searchUserInput').value.trim();
+
+  if (!query) {
+    state.searchResults = null;
+    renderDiscover();
+    return;
+  }
+
+  const btn = document.getElementById('btnSearchUsers');
+  btn.disabled = true;
+  try {
+    const res = await callServer('searchUsers', state.token, query);
+    if (res && res.ok) {
+      state.searchResults = res.results || [];
+      if (state.searchResults.length === 0) showToast(t('noUsersFound'), 'info');
+      renderDiscover();
+    } else {
+      handleServerError(res);
+    }
+  } catch (e) {
+    showToast((e && e.message) || t('errGeneric'), 'error');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function sendRequest(targetUserId) {
+  try {
+    const res = await callServer('sendFriendRequest', state.token, targetUserId);
+    if (res && res.ok) {
+      showToast(t('msgRequestSent'), 'success');
+      await refreshFriendsAndChat(false);
+      await loadDiscover(false);
+      if (state.searchResults !== null) {
+        const q = document.getElementById('searchUserInput').value.trim();
+        if (q) {
+          const sRes = await callServer('searchUsers', state.token, q);
+          if (sRes && sRes.ok) { state.searchResults = sRes.results || []; }
+        }
+      }
+      renderDiscover();
+    } else {
+      handleServerError(res);
+    }
+  } catch (e) {
+    showToast((e && e.message) || t('errGeneric'), 'error');
+  }
+}
+
+async function respondRequest(friendshipId, action) {
+  try {
+    const res = await callServer('respondToFriendRequest', state.token, friendshipId, action);
+    if (res && res.ok) {
+      showToast(action === 'accept' ? t('msgRequestAccepted') : t('msgRequestDeclined'), 'success');
+      await refreshFriendsAndChat(false);
+      await loadDiscover(false);
+      if (state.searchResults !== null) renderDiscover();
+    } else {
+      handleServerError(res);
+    }
+  } catch (e) {
+    showToast((e && e.message) || t('errGeneric'), 'error');
+  }
+}
+
+async function handleRemoveFriend(friendUserId) {
+  if (!confirm(t('confirmRemoveFriend'))) return;
+  try {
+    const res = await callServer('removeFriend', state.token, friendUserId);
+    if (res && res.ok) {
+      showToast(t('msgFriendRemoved'), 'info');
+      await refreshFriendsAndChat(false);
+      await loadDiscover(false);
+    } else {
+      handleServerError(res);
+    }
+  } catch (e) {
+    showToast((e && e.message) || t('errGeneric'), 'error');
+  }
+}
+
+/* =========================================================================
+   11. REQUESTS & FRIENDS LISTS
+   ========================================================================= */
+function renderRequestsAndFriends() {
+  const incEl = document.getElementById('incomingRequestsList');
+  if (state.incomingRequests.length === 0) {
+    incEl.innerHTML = '<p class="hint">' + escapeHtml(t('noIncomingRequests')) + '</p>';
+  } else {
+    incEl.innerHTML = state.incomingRequests.map(function(req) {
+      return '' +
+        '<div class="user-card-row">' +
+          '<div style="display:flex;align-items:center;gap:10px;min-width:0">' +
+            renderAvatarHtml(req.user) +
+            '<div style="min-width:0">' +
+              '<div style="font-weight:800;font-size:13.5px">' + escapeHtml(req.user.displayName) + '</div>' +
+              '<div style="font-size:12px;color:var(--text-2)">@' + escapeHtml(req.user.username) + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div style="display:flex;gap:6px">' +
+            '<button type="button" class="btn btn-primary btn-sm" onclick="respondRequest(\'' +
+              req.friendshipId + '\', \'accept\')">' + escapeHtml(t('acceptBtn')) + '</button>' +
+            '<button type="button" class="btn btn-outline btn-sm" onclick="respondRequest(\'' +
+              req.friendshipId + '\', \'decline\')">' + escapeHtml(t('declineBtn')) + '</button>' +
+          '</div>' +
+        '</div>';
+    }).join('');
+  }
+
+  const outEl = document.getElementById('outgoingRequestsList');
+  if (state.outgoingRequests.length === 0) {
+    outEl.innerHTML = '<p class="hint">' + escapeHtml(t('noOutgoingRequests')) + '</p>';
+  } else {
+    outEl.innerHTML = state.outgoingRequests.map(function(req) {
+      return '' +
+        '<div class="user-card-row">' +
+          '<div style="display:flex;align-items:center;gap:10px;min-width:0">' +
+            renderAvatarHtml(req.user) +
+            '<div style="min-width:0">' +
+              '<div style="font-weight:800;font-size:13.5px">' + escapeHtml(req.user.displayName) + '</div>' +
+              '<div style="font-size:12px;color:var(--text-2)">@' + escapeHtml(req.user.username) + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<button type="button" class="btn btn-outline btn-sm" onclick="respondRequest(\'' +
+            req.friendshipId + '\', \'cancel\')">' + escapeHtml(t('cancelReqBtn')) + '</button>' +
+        '</div>';
+    }).join('');
+  }
+
+  const frEl = document.getElementById('manageFriendsList');
+  if (state.friends.length === 0) {
+    frEl.innerHTML = '<p class="hint">' + escapeHtml(t('noFriendsYet')) + '</p>';
+  } else {
+    frEl.innerHTML = state.friends.map(function(item) {
+      const u = item.user;
+      return '' +
+        '<div class="user-card-row">' +
+          '<div style="display:flex;align-items:center;gap:10px;min-width:0">' +
+            renderAvatarHtml(u) +
+            '<div style="min-width:0">' +
+              '<div style="font-weight:800;font-size:13.5px">' + escapeHtml(u.displayName) + '</div>' +
+              '<div style="font-size:12px;color:var(--text-2)">@' + escapeHtml(u.username) + '</div>' +
+            '</div>' +
+          '</div>' +
+          '<div style="display:flex;gap:6px">' +
+            '<button type="button" class="btn btn-primary btn-sm" onclick="switchSection(\'chats\');selectFriendForChat(\'' +
+              u.userId + '\')">' + escapeHtml(t('openChatBtn')) + '</button>' +
+            '<button type="button" class="btn btn-danger btn-sm" onclick="handleRemoveFriend(\'' +
+              u.userId + '\')">' + escapeHtml(t('removeFriendBtn')) + '</button>' +
+          '</div>' +
+        '</div>';
+    }).join('');
+  }
+}
+
+/* =========================================================================
+   12. PROFILE
+   ========================================================================= */
+function populateProfileForm() {
+  if (!state.user) return;
+  state.profileAvatarBase64 = state.user.avatarData || '';
+  document.getElementById('profileStaticUsername').textContent = '@' + state.user.username;
+  document.getElementById('profDisplayName').value = state.user.displayName || '';
+  document.getElementById('profEmail').value = state.user.email || '';
+  document.getElementById('profBio').value = state.user.bio || '';
+  document.getElementById('profCurrentPassword').value = '';
+  document.getElementById('profNewPassword').value = '';
+  document.getElementById('profileAvatarPreview').innerHTML = renderAvatarHtml(state.user, true);
+}
+
+async function handleProfileAvatarChange(event) {
+  const file = event.target.files[0];
+  event.target.value = '';
+  if (!file) return;
+  try {
+    const compressed = await processImageFile(file, 160, 40000);
+    state.profileAvatarBase64 = compressed;
+    document.getElementById('profileAvatarPreview').innerHTML = renderAvatarHtml({
+      displayName: state.user.displayName,
+      avatarData: compressed
+    }, true);
+  } catch (err) {
+    showToast(err.message === 'TOO_LARGE' ? t('errImageTooLarge') : t('errInvalidImageType'), 'error');
+  }
+}
+
+function removeProfileAvatar() {
+  state.profileAvatarBase64 = '';
+  document.getElementById('profileAvatarPreview').innerHTML = renderAvatarHtml({
+    displayName: state.user.displayName,
+    avatarData: ''
+  }, true);
+}
+
+async function handleUpdateProfile(event) {
+  event.preventDefault();
+  const btn = document.getElementById('btnSaveProfile');
+  btn.disabled = true;
+  try {
+    const res = await callServer('updateProfile', state.token, {
+      displayName: document.getElementById('profDisplayName').value,
+      email: document.getElementById('profEmail').value,
+      bio: document.getElementById('profBio').value,
+      avatarData: state.profileAvatarBase64,
+      currentPassword: document.getElementById('profCurrentPassword').value,
+      newPassword: document.getElementById('profNewPassword').value
+    });
+    if (res && res.ok && res.user) {
+      state.user = res.user;
+      populateProfileForm();
+      showToast(t('msgProfileSaved'), 'success');
+      renderFriendsSidebar();
+    } else {
+      handleServerError(res);
+    }
+  } catch (e) {
+    showToast((e && e.message) || t('errGeneric'), 'error');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+/* =========================================================================
+   13. ADMIN
+   ========================================================================= */
+async function loadAdminPanel() {
+  if (!state.user || state.user.role !== 'admin') return;
+  try {
+    const res = await callServer('getAdminDashboard', state.token);
+    if (!res || !res.ok) {
+      handleServerError(res);
+      return;
+    }
+
+    document.getElementById('statTotalUsers').textContent = res.stats.totalUsers;
+    document.getElementById('statActiveUsers').textContent = res.stats.activeUsers;
+    document.getElementById('statSuspendedUsers').textContent = res.stats.suspendedUsers;
+    document.getElementById('statTotalMessages').textContent = res.stats.totalMessages;
+    document.getElementById('statTotalFriendships').textContent = res.stats.totalFriendships;
+
+    document.getElementById('adminUsersList').innerHTML = (res.users || []).map(function(u) {
+      const isSelf = u.userId === state.user.userId;
+      const roleBadge = u.role === 'admin'
+        ? '<span class="pill pill-admin">' + escapeHtml(t('roleAdmin')) + '</span>'
+        : '<span class="pill pill-muted">' + escapeHtml(t('roleUser')) + '</span>';
+      const statusBadge = u.status === 'suspended'
+        ? '<span class="pill pill-danger">' + escapeHtml(t('statusSuspended')) + '</span>'
+        : '<span class="pill pill-ok">' + escapeHtml(t('statusActive')) + '</span>';
+
+      let controls = '';
+      if (!isSelf) {
+        const statusBtn = u.status === 'suspended'
+          ? '<button type="button" class="btn btn-primary btn-sm" onclick="adminAction(\'' + u.userId + '\', \'activate\')">' + escapeHtml(t('activateBtn')) + '</button>'
+          : '<button type="button" class="btn btn-outline btn-sm" onclick="adminAction(\'' + u.userId + '\', \'suspend\')">' + escapeHtml(t('suspendBtn')) + '</button>';
+        const roleBtn = u.role === 'admin'
+          ? '<button type="button" class="btn btn-outline btn-sm" onclick="adminAction(\'' + u.userId + '\', \'demote\')">' + escapeHtml(t('demoteBtn')) + '</button>'
+          : '<button type="button" class="btn btn-gold btn-sm" onclick="adminAction(\'' + u.userId + '\', \'promote\')">' + escapeHtml(t('promoteBtn')) + '</button>';
+        const delBtn = '<button type="button" class="btn btn-danger btn-sm" onclick="adminAction(\'' + u.userId + '\', \'delete\')">' + escapeHtml(t('deleteUserBtn')) + '</button>';
+        controls = '<div style="display:flex;gap:6px;flex-wrap:wrap">' + statusBtn + roleBtn + delBtn + '</div>';
+      }
+
+      return '' +
+        '<div class="user-card-row">' +
+          '<div style="display:flex;align-items:center;gap:10px;min-width:0">' +
+            renderAvatarHtml(u) +
+            '<div style="min-width:0">' +
+              '<div style="font-weight:800;font-size:13.5px;display:flex;gap:6px;align-items:center;flex-wrap:wrap">' +
+                escapeHtml(u.displayName) + roleBadge + statusBadge +
+              '</div>' +
+              '<div style="font-size:12px;color:var(--text-2)">@' + escapeHtml(u.username) +
+                (u.email ? ' · ' + escapeHtml(u.email) : '') +
+                ' · ' + escapeHtml(formatTime(u.createdAt)) + '</div>' +
+            '</div>' +
+          '</div>' + controls +
+        '</div>';
+    }).join('');
+  } catch (e) {
+    showToast((e && e.message) || t('errGeneric'), 'error');
+  }
+}
+
+async function adminAction(targetUserId, action) {
+  if (action === 'delete' && !confirm(t('confirmDeleteUser'))) return;
+  try {
+    const res = await callServer('adminManageUser', state.token, targetUserId, action);
+    if (res && res.ok) {
+      showToast(action === 'delete' ? t('msgUserDeleted') : t('msgAdminUpdated'), 'success');
+      loadAdminPanel();
+    } else {
+      handleServerError(res);
+    }
+  } catch (e) {
+    showToast((e && e.message) || t('errGeneric'), 'error');
+  }
+}
+
+/* =========================================================================
+   14. PASSWORD RESET MODAL
+   ========================================================================= */
+function openResetModal() {
+  document.getElementById('resetModal').classList.remove('hidden');
+  document.getElementById('resetStep2').classList.add('hidden');
+  document.getElementById('resetHint').textContent = t('resetStep1Hint');
+  document.getElementById('resetUsername').value = document.getElementById('loginUsername').value || '';
+  document.getElementById('resetCode').value = '';
+  document.getElementById('resetNewPassword').value = '';
+  document.getElementById('resetConfirmPassword').value = '';
+  document.getElementById('btnSendCode').disabled = false;
+}
+
+function closeResetModal() {
+  document.getElementById('resetModal').classList.add('hidden');
+}
+
+async function sendResetCode() {
+  const username = document.getElementById('resetUsername').value.trim();
+  if (!username) { showToast(t('usernameLabel'), 'error'); return; }
+
+  const btn = document.getElementById('btnSendCode');
+  btn.disabled = true;
+  try {
+    const res = await callServer('requestPasswordReset', { username: username });
+    if (res && res.ok) {
+      document.getElementById('resetStep2').classList.remove('hidden');
+      document.getElementById('resetHint').textContent = t('msgResetCodeSent');
+      showToast(t('msgResetCodeSent'), 'success');
+    } else {
+      handleServerError(res);
+    }
+  } catch (e) {
+    showToast((e && e.message) || t('errGeneric'), 'error');
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+async function submitReset() {
+  const username = document.getElementById('resetUsername').value.trim();
+  const code = document.getElementById('resetCode').value.trim();
+  const pw = document.getElementById('resetNewPassword').value;
+  const pw2 = document.getElementById('resetConfirmPassword').value;
+
+  if (!code) { showToast(t('resetCodeLabel'), 'error'); return; }
+  if (pw.length < 6) { showToast(t('WEAK_PASSWORD'), 'error'); return; }
+  if (pw !== pw2) { showToast(t('passwordMismatch'), 'error'); return; }
+
+  const btn = document.getElementById('btnResetPw');
+  btn.disabled = true;
+  try {
+    const res = await callServer('resetPasswordWithCode', {
+      username: username, code: code, newPassword: pw
+    });
+    if (res && res.ok) {
+      closeResetModal();
+      showToast(t('msgPasswordReset'), 'success');
+      document.getElementById('loginUsername').value = username;
+      document.getElementById('loginPassword').value = '';
+    } else {
+      handleServerError(res);
+    }
+  } catch (e) {
+    showToast((e && e.message) || t('errGeneric'), 'error');
+  } finally {
+    btn.disabled = false;
+  }
+}
+</script>
+</body>
+</html>
